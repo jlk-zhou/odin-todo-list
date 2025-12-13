@@ -1,9 +1,9 @@
 import "./style.css"; 
-import { renderTodoItem } from "./components/todo-item/ui.js";
-import { exampleTodo } from "./data.js"
+import { renderTodoList } from "./components/todo-list/ui.js";
+import { exampleList } from "./data.js"
 
 function main() {
-  renderTodoItem(exampleTodo); 
+  renderTodoList(exampleList); 
 }
 
 main(); 

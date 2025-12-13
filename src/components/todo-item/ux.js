@@ -1,12 +1,14 @@
-import { exampleTodo } from "../../data.js";
-import { renderTodoItem } from "./ui.js";
+import { exampleList } from "../../data.js";
+import { renderTodoList } from "../todo-list/ui.js";
 
-function toggleDoneHandler() {
-  exampleTodo.toggleDone(); 
+function toggleDoneHandler(event) {
+  const uuid = event.target.parentElement.dataset.uuid; 
+  const item = exampleList.getItem(uuid); 
+  item.toggleDone(); 
 
   const listDiv = document.querySelector(".todo-list"); 
   listDiv.textContent = ""; 
-  renderTodoItem(exampleTodo); 
+  renderTodoList(exampleList); 
 }
 
 export { toggleDoneHandler }; 

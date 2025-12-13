@@ -2,8 +2,6 @@ import "./style.css";
 import { toggleDoneHandler } from "./ux.js"; 
 
 function renderTodoItem(todoItem) {
-  const listDiv = document.querySelector(".todo-list"); 
-
   // Create container for the todo item
   const containerDiv = document.createElement("div"); 
   containerDiv.classList.add("todo-item"); 
@@ -46,7 +44,7 @@ function renderTodoItem(todoItem) {
   toggleDoneButton.addEventListener("click", toggleDoneHandler); 
   containerDiv.appendChild(toggleDoneButton); 
 
-  listDiv.appendChild(containerDiv); 
+  return containerDiv; 
 }
 
 export { renderTodoItem }; 
