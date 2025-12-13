@@ -1,4 +1,9 @@
 import "./style.css"; 
-import { greeting } from "./util/helper.js"; 
+import { renderTodoItem } from "./components/todo-item/ui.js";
+import { exampleTodo } from "./data.js"
 
-console.log(greeting); 
+function main() {
+  renderTodoItem(exampleTodo); 
+}
+
+main(); 
