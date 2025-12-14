@@ -1,5 +1,8 @@
 import "./style.css"; 
-import { toggleDoneHandler } from "./ux.js"; 
+import { 
+  toggleDoneHandler, 
+  deleteHandler,  
+} from "./ux.js"; 
 
 function renderTodoItem(todoItem) {
   // Create container for the todo item
@@ -43,6 +46,13 @@ function renderTodoItem(todoItem) {
   toggleDoneButton.textContent = "Toggle Done"; 
   toggleDoneButton.addEventListener("click", toggleDoneHandler); 
   containerDiv.appendChild(toggleDoneButton); 
+
+  // Render delete button
+  const deleteButton = document.createElement("button"); 
+  deleteButton.classList.add("delete"); 
+  deleteButton.textContent = "Delete"; 
+  deleteButton.addEventListener("click", deleteHandler); 
+  containerDiv.appendChild(deleteButton); 
 
   return containerDiv; 
 }

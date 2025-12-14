@@ -6,9 +6,16 @@ function toggleDoneHandler(event) {
   const item = exampleList.getItem(uuid); 
   item.toggleDone(); 
 
-  const listDiv = document.querySelector(".todo-list"); 
-  listDiv.textContent = ""; 
   renderTodoList(exampleList); 
 }
 
-export { toggleDoneHandler }; 
+function deleteHandler(event) {
+  const uuid = event.target.parentElement.dataset.uuid; 
+  exampleList.deleteItem(uuid); 
+  renderTodoList(exampleList); 
+}
+
+export { 
+  toggleDoneHandler, 
+  deleteHandler
+}; 

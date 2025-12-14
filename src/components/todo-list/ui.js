@@ -2,7 +2,7 @@ import { renderTodoItem } from "../todo-item/ui";
 
 function renderTodoList(todoList) {
   const listDiv = document.querySelector(".todo-list"); 
-  listDiv.classList.add(".todo-list"); 
+  listDiv.textContent = ""; 
 
   const listItems = todoList.getAllItems(); 
   listItems.forEach(item => {

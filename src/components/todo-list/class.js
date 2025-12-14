@@ -14,6 +14,11 @@ class TodoList {
   addItem(item) {
     this._listItems.push(item); 
   }
+
+  deleteItem(uuid) {
+    const index = this._listItems.findIndex(item => item.uuid === uuid); 
+    this._listItems.splice(index, 1); 
+  }
 }
 
 export { TodoList }; 
