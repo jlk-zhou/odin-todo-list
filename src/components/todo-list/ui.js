@@ -59,8 +59,7 @@ function renderAddTodoForm() {
   addTodoForm.appendChild(descriptionLabel); 
 
   // Render the todo description input field
-  const descriptionInput = document.createElement("input"); 
-  descriptionInput.setAttribute("type", "text"); 
+  const descriptionInput = document.createElement("textarea"); 
   descriptionInput.setAttribute("name", "description"); 
   descriptionInput.setAttribute("id", "description"); 
   addTodoForm.appendChild(descriptionInput); 

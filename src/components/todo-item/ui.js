@@ -19,7 +19,12 @@ function renderTodoItem(todoItem) {
   // Render description
   const description = document.createElement("p"); 
   description.classList.add("description"); 
-  description.textContent = todoItem.description; 
+  
+  // Truncate multiline descriptions with ellipses
+  const descriptionText = todoItem.description.split("\n", 2)
+  description.textContent = `
+    ${descriptionText[0]}${descriptionText[1] ? "..." : ""}
+  `; 
   containerDiv.appendChild(description); 
 
   // Render due date
