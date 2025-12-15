@@ -1,16 +1,26 @@
-import { renderAddTodoButton } from "./ui.js";
 import { TodoItem } from "../todo-item/class.js";
 import { exampleList } from "../../data.js"; 
 import { 
-  renderTodoList, 
+  renderAddTodoButton, 
   renderAddTodoForm, 
 } from "./ui.js";
+import { updateTodoList } from "./index.js";
+
+function addTodoHandler(event) {
+  event.currentTarget.remove(); 
+  const body = document.querySelector("body")
+  const addTodoForm = renderAddTodoForm(); 
+  body.appendChild(addTodoForm); 
+}
 
 function cancelButtonHandler(event) {
   event.preventDefault(); 
   const addTodoForm = document.querySelector(".add-todo-form"); 
   addTodoForm.remove(); 
-  renderAddTodoButton(); 
+
+  const body = document.querySelector("body"); 
+  const addTodoButton = renderAddTodoButton(); 
+  body.appendChild(addTodoButton); 
 }
 
 function saveButtonHandler(event) {
@@ -32,12 +42,15 @@ function saveButtonHandler(event) {
 
   exampleList.addItem(newTodoItem); 
 
-  renderTodoList(exampleList); 
-  renderAddTodoForm(); 
+  updateTodoList(exampleList); 
 
+  const body = document.querySelector("body"); 
+  addTodoForm.reset(); 
+  body.appendChild(addTodoForm); 
 }
 
 export { 
+  addTodoHandler, 
   cancelButtonHandler, 
   saveButtonHandler, 
 }; 

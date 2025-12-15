@@ -1,13 +1,14 @@
 import { renderTodoItem } from "../todo-item/ui";
 import { 
+  addTodoHandler, 
   cancelButtonHandler, 
   saveButtonHandler
 } from "./ux.js"; 
 import "./style.css"; 
 
 function renderTodoList(todoList) {
-  const listDiv = document.querySelector(".todo-list"); 
-  listDiv.textContent = ""; 
+  const listDiv = document.createElement("div"); 
+  listDiv.classList.add("todo-list"); 
 
   const listItems = todoList.getAllItems(); 
   listItems.forEach(item => {
@@ -15,26 +16,19 @@ function renderTodoList(todoList) {
     listDiv.appendChild(itemDiv); 
   }); 
 
-  renderAddTodoButton(); 
+  return listDiv; 
 }
 
 function renderAddTodoButton() {
-  const listDiv = document.querySelector(".todo-list")
-
   const addTodoButton = document.createElement("button"); 
   addTodoButton.classList.add("add-todo-button"); 
   addTodoButton.textContent = "Add Todo"; 
-  addTodoButton.addEventListener("click", renderAddTodoForm); 
+  addTodoButton.addEventListener("click", addTodoHandler); 
   
-  listDiv.appendChild(addTodoButton); 
+  return addTodoButton; 
 }
 
 function renderAddTodoForm() {
-  const addTodoButton = document.querySelector(".add-todo-button"); 
-  addTodoButton.remove(); 
-
-  const listDiv = document.querySelector(".todo-list"); 
-
   // Render the form container
   const addTodoForm = document.createElement("form"); 
   addTodoForm.classList.add("add-todo-form"); 
@@ -124,7 +118,7 @@ function renderAddTodoForm() {
   saveButton.addEventListener("click", saveButtonHandler)
   addTodoForm.appendChild(saveButton); 
 
-  listDiv.appendChild(addTodoForm); 
+  return addTodoForm; 
 }
 
 export { 

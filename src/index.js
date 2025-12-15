@@ -1,9 +1,9 @@
 import "./style.css"; 
-import { renderTodoList } from "./components/todo-list/ui.js";
-import { exampleList } from "./data.js"
+import { exampleList } from "./data.js"; 
+import { mountTodoList } from "./components/todo-list/index.js"; 
 
 function main() {
-  renderTodoList(exampleList); 
+  mountTodoList(exampleList); 
 }
 
 main(); 
