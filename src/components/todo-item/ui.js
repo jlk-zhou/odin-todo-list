@@ -2,6 +2,7 @@ import "./style.css";
 import { 
   toggleDoneHandler, 
   deleteHandler,  
+  detailViewHandler, 
 } from "./ux.js"; 
 
 function renderTodoItem(todoItem) {
@@ -49,15 +50,18 @@ function renderTodoItem(todoItem) {
   const toggleDoneButton = document.createElement("button"); 
   toggleDoneButton.classList.add("toggle-done"); 
   toggleDoneButton.textContent = "Toggle Done"; 
-  toggleDoneButton.addEventListener("click", toggleDoneHandler); 
   containerDiv.appendChild(toggleDoneButton); 
 
   // Render delete button
   const deleteButton = document.createElement("button"); 
   deleteButton.classList.add("delete"); 
   deleteButton.textContent = "Delete"; 
-  deleteButton.addEventListener("click", deleteHandler); 
   containerDiv.appendChild(deleteButton); 
+
+  // Add event listener to handle elaborate task view dialog
+  containerDiv.addEventListener("click", detailViewHandler); 
+  toggleDoneButton.addEventListener("click", toggleDoneHandler); 
+  deleteButton.addEventListener("click", deleteHandler); 
 
   return containerDiv; 
 }

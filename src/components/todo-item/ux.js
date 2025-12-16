@@ -15,7 +15,13 @@ function deleteHandler(event) {
   updateTodoList(exampleList); 
 }
 
+function detailViewHandler(event) {
+  const uuid = event.target.closest(".todo-item").dataset.uuid;
+  console.log(uuid);  
+}
+
 export { 
   toggleDoneHandler, 
-  deleteHandler
+  deleteHandler, 
+  detailViewHandler, 
 }; 
