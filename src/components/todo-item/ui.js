@@ -31,7 +31,13 @@ function renderTodoItem(todoItem) {
   // Render due date
   const dueDate = document.createElement("p"); 
   dueDate.classList.add("due-date"); 
-  dueDate.textContent = `Due: ${todoItem.dueDate}`; 
+  const options = {
+    day: "2-digit", 
+    month: "short", 
+    year: "numeric", 
+  }
+  const date = new Intl.DateTimeFormat("en-GB", options).format(todoItem.dueDate); 
+  dueDate.textContent = `${date}`; 
   containerDiv.appendChild(dueDate); 
 
   // Render priority
