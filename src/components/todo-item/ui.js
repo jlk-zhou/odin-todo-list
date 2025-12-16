@@ -34,15 +34,13 @@ function renderSummaryContent(todoItem) {
     month: "short", 
     year: "numeric", 
   }
-  const date = new Intl.DateTimeFormat("en-GB", options).format(todoItem.dueDate); 
-  dueDate.textContent = `${date}`; 
-  summaryDiv.appendChild(dueDate); 
-
-  // Render priority
-  const priority = document.createElement("p"); 
-  priority.classList.add("priority"); 
-  priority.textContent = `Priority: ${todoItem.priority}`; 
-  summaryDiv.appendChild(priority); 
+  if (!isNaN(todoItem.dueDate))
+    {
+      const date = new Intl.DateTimeFormat("en-GB", options)
+                           .format(todoItem.dueDate); 
+      dueDate.textContent = `${date}`; 
+      summaryDiv.appendChild(dueDate); 
+    }
 
   return summaryDiv; 
 }
@@ -55,19 +53,26 @@ function renderTodoItem(todoItem) {
 
   // Render summary of todo
   const summaryDiv = renderSummaryContent(todoItem); 
-  containerDiv.appendChild(summaryDiv); 
+  containerDiv.appendChild(summaryDiv);  
 
-  // Render completion status
-  const done = document.createElement("p"); 
-  done.classList.add("done"); 
-  done.textContent = todoItem.done ? "Done" : "Not Yet Done"; 
-  containerDiv.appendChild(done); 
-
-  // Render completion button
+  // Render toggle done button
   const toggleDoneButton = document.createElement("button"); 
   toggleDoneButton.classList.add("toggle-done"); 
-  toggleDoneButton.textContent = "Toggle Done"; 
+  toggleDoneButton.textContent = todoItem.done ? "Done" : "Not Done"; 
   containerDiv.appendChild(toggleDoneButton); 
+
+  // Toggle done button shall also reflect priority level at the same time
+  switch (todoItem.priority) {
+    case 0: 
+      toggleDoneButton.classList.add("high-priority"); 
+      break; 
+    case 1: 
+      toggleDoneButton.classList.add("medium-priority"); 
+      break; 
+    case 2: 
+      toggleDoneButton.classList.add("low-priority"); 
+      break; 
+  }
 
   // Render delete button
   const deleteButton = document.createElement("button"); 

@@ -31,7 +31,7 @@ function saveButtonHandler(event) {
   const title = formData.get("title"); 
   const description = formData.get("description"); 
   const dueDate = new Date(formData.get("due-date")); 
-  const priority = formData.get("priority"); 
+  const priority = +formData.get("priority"); 
 
   const newTodoItem = new TodoItem(
     title, 
