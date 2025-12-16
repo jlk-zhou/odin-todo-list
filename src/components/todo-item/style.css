@@ -1,8 +1,8 @@
 .todo-item {
   border: 1px solid black; 
   display: grid; 
-  grid-template-columns: 120px 1fr 1fr min-content;
-  grid-template-rows: min-content 1fr min-content; 
+  grid-template-columns: 120px 1fr min-content;
+  grid-template-rows: 1fr min-content; 
 }
 
 .todo-item .toggle-done, 
@@ -10,16 +10,11 @@
   align-self: center;
   width: 70px; 
   height: 50px;
+  grid-row: 1; 
 }
 
 .todo-item .toggle-done {
   grid-column: 1;
-  grid-row: 1 / -2; 
-}
-
-.todo-item .delete {
-  grid-column: -1;
-  grid-row: 1 / -1; 
 }
 
 .todo-item .done {
@@ -27,30 +22,35 @@
   grid-row: -1;
 }
 
+.todo-item .summary {
+  grid-column: 2;
+  grid-row: 1 / -1; 
+  display: grid; 
+  grid-template-rows: repeat(3, min-content);
+  grid-template-columns: min-content min-content;
+}
+
 .todo-item .title {
   grid-row: 1; 
-  grid-column: 2 / -2;
-  margin: 0px; 
-  height: 50px; 
 }
 
 .todo-item .description {
   grid-row: 2; 
-  grid-column: 2 / -2;
-}
-
-.todo-item .due-date { 
-  grid-row: -1; 
-  grid-column: 2;
-}
-
-.todo-item .priority {
-  grid-row: -1; 
-  grid-column: 3;
-}
-
-.description {
   white-space: nowrap; 
   overflow: hidden; 
   text-overflow: ellipsis;
+}
+
+.todo-item .due-date {
+  grid-column: 1;
+  grid-row: -1; 
+}
+
+.todo-item .priority {
+  grid-column: -1;
+  grid-row: -1
+}
+
+.todo-item .delete {
+  grid-column: -1;
 }
