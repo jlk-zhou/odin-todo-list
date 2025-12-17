@@ -4,7 +4,7 @@ import { updateTodoList } from "../todo-list/index.js";
 import { renderAddTodoButton } from "../todo-list/ui.js";
 
 function toggleDoneHandler(event) {
-  const uuid = event.target.parentElement.dataset.uuid; 
+  const uuid = event.target.closest(".todo-item").dataset.uuid; 
   const item = exampleList.getItem(uuid); 
   item.toggleDone(); 
 

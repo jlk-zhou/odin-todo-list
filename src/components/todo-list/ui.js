@@ -14,11 +14,24 @@ function renderTodoList(todoList) {
   const listDiv = document.createElement("div"); 
   listDiv.classList.add("todo-list"); 
 
+  const incompleteDiv = document.createElement("div"); 
+  incompleteDiv.classList.add("incomplete"); 
+
+  const completeDiv = document.createElement("div"); 
+  completeDiv.classList.add("complete"); 
+
   const listItems = todoList.getAllItems(); 
   listItems.forEach(item => {
     const itemDiv = renderTodoItem(item); 
-    listDiv.appendChild(itemDiv); 
+    if (!item.done){
+      incompleteDiv.appendChild(itemDiv); 
+    } else {
+      completeDiv.appendChild(itemDiv); 
+    }; 
   }); 
+
+  listDiv.appendChild(incompleteDiv); 
+  listDiv.appendChild(completeDiv); 
 
   return listDiv; 
 }
