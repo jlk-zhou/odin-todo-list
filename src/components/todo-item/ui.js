@@ -9,11 +9,16 @@ function renderSummaryContent(todoItem) {
   const summaryDiv = document.createElement("div"); 
   summaryDiv.classList.add("summary"); 
 
+  // Create a header div for title and options
+  const headerDiv = document.createElement("div"); 
+  headerDiv.classList.add("header"); 
+  summaryDiv.appendChild(headerDiv); 
+
   // Render title
   const title = document.createElement("h3"); 
   title.classList.add("title"); 
   title.textContent = todoItem.title;
-  summaryDiv.appendChild(title); 
+  headerDiv.appendChild(title); 
   
   // Render description
   const description = document.createElement("p"); 
@@ -41,6 +46,17 @@ function renderSummaryContent(todoItem) {
       dueDate.textContent = `${date}`; 
       summaryDiv.appendChild(dueDate); 
     }
+  // Create an option div for actions like edit and delete
+  const optionsDiv = document.createElement("div"); 
+  optionsDiv.classList.add("options"); 
+  headerDiv.appendChild(optionsDiv); 
+
+  // Render delete button
+  const deleteButton = document.createElement("button"); 
+  deleteButton.classList.add("delete"); 
+  deleteButton.textContent = "Delete"; 
+  deleteButton.addEventListener("click", deleteHandler); 
+  optionsDiv.appendChild(deleteButton); 
 
   return summaryDiv; 
 }
@@ -51,14 +67,11 @@ function renderTodoItem(todoItem) {
   containerDiv.classList.add("todo-item"); 
   containerDiv.dataset.uuid = todoItem.uuid; 
 
-  // Render summary of todo
-  const summaryDiv = renderSummaryContent(todoItem); 
-  containerDiv.appendChild(summaryDiv);  
-
   // Render toggle done button
   const toggleDoneButton = document.createElement("button"); 
   toggleDoneButton.classList.add("toggle-done"); 
   toggleDoneButton.textContent = todoItem.done ? "Done" : "Not Done"; 
+  toggleDoneButton.addEventListener("click", toggleDoneHandler); 
   containerDiv.appendChild(toggleDoneButton); 
 
   // Toggle done button shall also reflect priority level at the same time
@@ -74,16 +87,12 @@ function renderTodoItem(todoItem) {
       break; 
   }
 
-  // Render delete button
-  const deleteButton = document.createElement("button"); 
-  deleteButton.classList.add("delete"); 
-  deleteButton.textContent = "Delete"; 
-  containerDiv.appendChild(deleteButton); 
+  // Render summary of todo
+  const summaryDiv = renderSummaryContent(todoItem); 
+  containerDiv.appendChild(summaryDiv);  
 
   // Add event listener to handle elaborate task view dialog
   containerDiv.addEventListener("click", detailViewHandler); 
-  toggleDoneButton.addEventListener("click", toggleDoneHandler); 
-  deleteButton.addEventListener("click", deleteHandler); 
 
   return containerDiv; 
 }
