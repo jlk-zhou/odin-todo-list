@@ -1,4 +1,8 @@
-import { renderTodoItem } from "../todo-item/ui";
+import { 
+  renderTodoItem, 
+  renderTodoForm, 
+} from "../todo-item/ui";
+
 import { 
   addTodoHandler, 
   cancelButtonHandler, 
@@ -29,94 +33,16 @@ function renderAddTodoButton() {
 }
 
 function renderAddTodoForm() {
-  // Render the form container
-  const addTodoForm = document.createElement("form"); 
-  addTodoForm.classList.add("add-todo-form"); 
+  const addTodoForm = renderTodoForm(); 
+  addTodoForm.classList.add("add-item"); 
 
-  // Render the todo title label field
-  const titleLabel = document.createElement("label"); 
-  titleLabel.setAttribute("for", "title"); 
-  titleLabel.textContent = "Todo Title: "; 
-  addTodoForm.appendChild(titleLabel); 
-
-  // Render the todo title input field
-  const titleInput = document.createElement("input"); 
-  titleInput.setAttribute("type", "text"); 
-  titleInput.setAttribute("name", "title"); 
-  titleInput.setAttribute("id", "title"); 
-  addTodoForm.appendChild(titleInput); 
-
-  // Render the todo description label field
-  const descriptionLabel = document.createElement("label"); 
-  descriptionLabel.setAttribute("for", "description"); 
-  descriptionLabel.textContent = "Todo Description: "; 
-  addTodoForm.appendChild(descriptionLabel); 
-
-  // Render the todo description input field
-  const descriptionInput = document.createElement("textarea"); 
-  descriptionInput.setAttribute("name", "description"); 
-  descriptionInput.setAttribute("id", "description"); 
-  addTodoForm.appendChild(descriptionInput); 
-
-  // Render the label for due date selector
-  const dueDateLabel = document.createElement("label"); 
-  dueDateLabel.setAttribute("for", "due-date"); 
-  dueDateLabel.textContent = "Due Date: "; 
-  addTodoForm.appendChild(dueDateLabel); 
-
-  // Render the due date selector itself
-  const dueDateInput = document.createElement("input"); 
-  dueDateInput.setAttribute("type", "date"); 
-  dueDateInput.setAttribute("name", "due-date"); 
-  dueDateInput.setAttribute("id", "due-date"); 
-  addTodoForm.appendChild(dueDateInput); 
-
-  // Render the label for priority setter
-  const priorityLabel = document.createElement("label"); 
-  priorityLabel.setAttribute("for", "priority"); 
-  priorityLabel.textContent = "Priority: "; 
-  addTodoForm.appendChild(priorityLabel); 
-
-  // Render the priority setter itself
-  const priorityInput = document.createElement("select"); 
-  priorityInput.setAttribute("name", "priority"); 
-  priorityInput.setAttribute("id", "priority"); 
-
-  const noPriority = document.createElement("option"); 
-  noPriority.setAttribute("value", "")
-  noPriority.textContent = "--Select a priority level--"; 
-  priorityInput.appendChild(noPriority); 
-
-  const lowPriority = document.createElement("option"); 
-  lowPriority.setAttribute("value", "2")
-  lowPriority.textContent = "Low"; 
-  priorityInput.appendChild(lowPriority); 
-
-  const mediumPriority = document.createElement("option"); 
-  mediumPriority.setAttribute("value", "1")
-  mediumPriority.textContent = "Medium"; 
-  priorityInput.appendChild(mediumPriority); 
-
-  const highPriority = document.createElement("option"); 
-  highPriority.setAttribute("value", "0")
-  highPriority.textContent = "High"; 
-  priorityInput.appendChild(highPriority); 
-
-  addTodoForm.appendChild(priorityInput); 
-
-  // Render the cancel button
-  const cancelButton = document.createElement("button"); 
-  cancelButton.classList.add("cancel"); 
-  cancelButton.textContent = "Cancel"; 
+  // Add cancel button event handler
+  const cancelButton = addTodoForm.querySelector(".cancel"); 
   cancelButton.addEventListener("click", cancelButtonHandler); 
-  addTodoForm.appendChild(cancelButton); 
 
-  // Render the save button
-  const saveButton = document.createElement("button"); 
-  saveButton.classList.add("save"); 
-  saveButton.textContent = "Save"; 
-  saveButton.addEventListener("click", saveButtonHandler)
-  addTodoForm.appendChild(saveButton); 
+  // Add save button event handler
+  const saveButton = addTodoForm.querySelector(".save"); 
+  saveButton.addEventListener("click", saveButtonHandler); 
 
   return addTodoForm; 
 }

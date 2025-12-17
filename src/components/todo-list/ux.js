@@ -8,6 +8,15 @@ import { updateTodoList } from "./index.js";
 
 function addTodoHandler(event) {
   event.currentTarget.remove(); 
+
+  // Remove existing form if any
+  const existingForm = document.querySelector(".todo-form"); 
+  if (existingForm) {
+    existingForm.remove(); 
+  }
+
+  updateTodoList(exampleList); 
+
   const body = document.querySelector("body")
   const addTodoForm = renderAddTodoForm(); 
   body.appendChild(addTodoForm); 
@@ -15,8 +24,10 @@ function addTodoHandler(event) {
 
 function cancelButtonHandler(event) {
   event.preventDefault(); 
-  const addTodoForm = document.querySelector(".add-todo-form"); 
+  const addTodoForm = document.querySelector(".todo-form.add-item"); 
   addTodoForm.remove(); 
+
+  updateTodoList(exampleList); 
 
   const body = document.querySelector("body"); 
   const addTodoButton = renderAddTodoButton(); 
@@ -25,7 +36,7 @@ function cancelButtonHandler(event) {
 
 function saveButtonHandler(event) {
   event.preventDefault(); 
-  const addTodoForm = document.querySelector(".add-todo-form"); 
+  const addTodoForm = document.querySelector(".todo-form.add-item"); 
   const formData = new FormData(addTodoForm); 
 
   const title = formData.get("title"); 
