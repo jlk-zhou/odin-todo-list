@@ -1,8 +1,9 @@
 import "./style.css"; 
 import { 
+  toggleDoneHandler, 
   editHandler,
   cancelButtonHandler, 
-  toggleDoneHandler, 
+  saveButtonHandler, 
   deleteHandler,  
   detailViewHandler, 
 } from "./ux.js"; 
@@ -93,12 +94,15 @@ function renderTodoItem(todoItem) {
   // Toggle done button shall also reflect priority level at the same time
   switch (todoItem.priority) {
     case 0: 
-      toggleDoneButton.classList.add("high-priority"); 
+      toggleDoneButton.classList.add("no-priority"); 
       break; 
     case 1: 
-      toggleDoneButton.classList.add("medium-priority"); 
+      toggleDoneButton.classList.add("high-priority"); 
       break; 
     case 2: 
+      toggleDoneButton.classList.add("medium-priority"); 
+      break; 
+    case 3: 
       toggleDoneButton.classList.add("low-priority"); 
       break; 
   }
@@ -168,24 +172,26 @@ function renderTodoForm() {
   priorityInput.setAttribute("id", "priority"); 
 
   const noPriority = document.createElement("option"); 
-  noPriority.setAttribute("value", "")
-  noPriority.textContent = "--Select a priority level--"; 
+  noPriority.setAttribute("value", "0")
+  noPriority.textContent = "None"; 
   priorityInput.appendChild(noPriority); 
 
   const lowPriority = document.createElement("option"); 
-  lowPriority.setAttribute("value", "2")
+  lowPriority.setAttribute("value", "3")
   lowPriority.textContent = "Low"; 
   priorityInput.appendChild(lowPriority); 
 
   const mediumPriority = document.createElement("option"); 
-  mediumPriority.setAttribute("value", "1")
+  mediumPriority.setAttribute("value", "2")
   mediumPriority.textContent = "Medium"; 
   priorityInput.appendChild(mediumPriority); 
 
   const highPriority = document.createElement("option"); 
-  highPriority.setAttribute("value", "0")
+  highPriority.setAttribute("value", "1")
   highPriority.textContent = "High"; 
   priorityInput.appendChild(highPriority); 
+
+  priorityInput.value = "0"; 
 
   todoForm.appendChild(priorityInput); 
 
@@ -211,6 +217,10 @@ function renderEditTodoForm() {
   // Add cancel edit handler
   const cancelButton = editTodoForm.querySelector(".cancel"); 
   cancelButton.addEventListener("click", cancelButtonHandler); 
+
+  // Add save edit handler
+  const saveButton = editTodoForm.querySelector(".save"); 
+  saveButton.addEventListener("click", saveButtonHandler); 
 
   return editTodoForm; 
 }
