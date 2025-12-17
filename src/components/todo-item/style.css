@@ -33,6 +33,10 @@
   max-width: calc(100% - 115px); 
 }
 
+.complete .summary .title {
+  text-decoration: line-through; 
+}
+
 .summary .header {
   display: flex;
 }
