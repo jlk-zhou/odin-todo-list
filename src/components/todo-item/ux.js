@@ -9,18 +9,23 @@ function toggleDoneHandler(event) {
   updateTodoList(exampleList); 
 }
 
+function editHandler(event) {
+  const uuid = event.target.closest(".todo-item").dataset.uuid;
+  console.log(uuid); 
+}
+
 function deleteHandler(event) {
-  const uuid = event.target.parentElement.dataset.uuid; 
+  const uuid = event.target.closest(".todo-item").dataset.uuid;
   exampleList.deleteItem(uuid); 
   updateTodoList(exampleList); 
 }
 
 function detailViewHandler(event) {
   const uuid = event.target.closest(".todo-item").dataset.uuid;
-  console.log(uuid);  
 }
 
 export { 
+  editHandler, 
   toggleDoneHandler, 
   deleteHandler, 
   detailViewHandler, 

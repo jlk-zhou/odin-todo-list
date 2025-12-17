@@ -6,7 +6,8 @@
 
 .todo-item .toggle-done {
   width: 100px; 
-  height: 30px; 
+  min-width: 100px;
+  height: 30px;
 }
 
 .toggle-done.high-priority {
@@ -25,6 +26,7 @@
   flex: 1; 
   display: flex; 
   flex-direction: column;
+  max-width: calc(100% - 115px); 
 }
 
 .summary .header {
@@ -32,8 +34,17 @@
 }
 
 .header .title {
+  max-width: calc(100% - 110px);
   flex: 1; 
-  font-size: 1em;
+  font-size: 1em; 
+  display: -webkit-box; 
+  -webkit-box-orient: vertical; 
+  -webkit-line-clamp: 4; 
+  overflow: hidden; 
+}
+
+.header .options {
+  flex: none; 
 }
 
 .summary .description {

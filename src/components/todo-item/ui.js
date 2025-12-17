@@ -1,9 +1,32 @@
 import "./style.css"; 
 import { 
+  editHandler,
   toggleDoneHandler, 
   deleteHandler,  
   detailViewHandler, 
 } from "./ux.js"; 
+
+function renderOptions() {
+  // Create an option div for actions like edit and delete
+  const optionsDiv = document.createElement("div"); 
+  optionsDiv.classList.add("options"); 
+
+  // Render edit button
+  const editButton = document.createElement("button"); 
+  editButton.classList.add("edit"); 
+  editButton.textContent = "Edit"; 
+  editButton.addEventListener("click", editHandler); 
+  optionsDiv.appendChild(editButton); 
+
+  // Render delete button
+  const deleteButton = document.createElement("button"); 
+  deleteButton.classList.add("delete"); 
+  deleteButton.textContent = "Delete"; 
+  deleteButton.addEventListener("click", deleteHandler); 
+  optionsDiv.appendChild(deleteButton); 
+  
+  return optionsDiv; 
+}
 
 function renderSummaryContent(todoItem) {
   const summaryDiv = document.createElement("div"); 
@@ -46,17 +69,9 @@ function renderSummaryContent(todoItem) {
       dueDate.textContent = `${date}`; 
       summaryDiv.appendChild(dueDate); 
     }
-  // Create an option div for actions like edit and delete
-  const optionsDiv = document.createElement("div"); 
-  optionsDiv.classList.add("options"); 
+  
+  const optionsDiv = renderOptions(); 
   headerDiv.appendChild(optionsDiv); 
-
-  // Render delete button
-  const deleteButton = document.createElement("button"); 
-  deleteButton.classList.add("delete"); 
-  deleteButton.textContent = "Delete"; 
-  deleteButton.addEventListener("click", deleteHandler); 
-  optionsDiv.appendChild(deleteButton); 
 
   return summaryDiv; 
 }
