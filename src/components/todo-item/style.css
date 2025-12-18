@@ -34,6 +34,7 @@
 }
 
 .complete .summary .title {
+  color: rgb(80, 80, 80); 
   text-decoration: line-through; 
 }
 

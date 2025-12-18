@@ -1,0 +1,48 @@
+[
+  {
+    "name": "Inbox", 
+    "list": [
+      {
+        "title": "Clean out trash", 
+        "description": "Make sure to sort them", 
+        "dueDate": "2025-12-18", 
+        "priority": 1
+      }, 
+      {
+        "title": "Wash dishes", 
+        "description": "Also clean the pots", 
+        "dueDate": "2026-01-23", 
+        "priority": 3
+      }, 
+      {
+        "title": "Prepare Christmas gifts", 
+        "description": "For connections mostly", 
+        "dueDate": "2025-12-24", 
+        "priority": 2
+      }
+    ]
+  }, 
+  {
+    "name": "Work", 
+    "list": [
+      {
+        "title": "Finish essay", 
+        "description": "Needs to submit on time", 
+        "dueDate": "2026-01-17", 
+        "priority": 0
+      }, 
+      {
+        "title": "Attend networking event", 
+        "description": "Make sure to bullshit", 
+        "dueDate": "2026-02-04", 
+        "priority": 3
+      }, 
+      {
+        "title": "Apply for jobs", 
+        "description": "Just apply, don't think of anything else", 
+        "dueDate": "2026-02-18", 
+        "priority": 1
+      }
+    ]
+  }
+]
