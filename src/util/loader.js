@@ -1,3 +1,4 @@
+import { ProjectList } from "../components/interface/class.js"; 
 import { Project } from "../components/project/class.js"; 
 import { TodoList } from "../components/todo-list/class.js"; 
 import { TodoItem } from "../components/todo-item/class.js"; 
@@ -27,7 +28,7 @@ function loadProject(projectData) {
   return project; 
 }
 
-function loadProjectsFromData() {
+function loadProjectList() {
   const appData = localStorage.getItem("data"); 
   const projectsData = JSON.parse(appData); 
   
@@ -36,7 +37,8 @@ function loadProjectsFromData() {
     projects.push(loadProject(projectData)); 
   }); 
 
-  return projects; 
+  const projectList = new ProjectList(projects); 
+  return projectList; 
 }
 
-export { loadProjectsFromData }; 
+export { loadProjectList }; 

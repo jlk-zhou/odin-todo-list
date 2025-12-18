@@ -1,20 +1,16 @@
-import { 
-  renderTodoList, 
-  renderAddTodoButton
-} from "../todo-list/ui.js"; 
+// import { 
+//   renderTodoList, 
+//   renderAddTodoButton
+// } from "../todo-list/ui.js"; 
 
-function renderProject(uuid) {
+function renderProject(project) {
   const projectDiv = document.createElement("div"); 
   projectDiv.classList.add("project"); 
-  projectDiv.setAttribute("data-uuid", uuid); 
+  projectDiv.setAttribute("data-uuid", project.uuid); 
 
-  const project = localStorage.getItem("data")
-                              .find(item => item.uuid = uuid); 
-  console.log(project); 
-
-  // const projectName = document.createElement("h3"); 
-  // projectName.textContent = project.name; 
-  // projectDiv.appendChild(projectName); 
+  const projectName = document.createElement("h3"); 
+  projectName.textContent = project.name; 
+  projectDiv.appendChild(projectName); 
 
   // const projectList = renderTodoList(project.list); 
   // projectDiv.appendChild(projectList); 
@@ -22,7 +18,7 @@ function renderProject(uuid) {
   // const addTodoButton = renderAddTodoButton(); 
   // projectDiv.appendChild(addTodoButton); 
 
-  // return projectDiv; 
+  return projectDiv; 
 }
 
 export { renderProject }; 

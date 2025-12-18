@@ -3,6 +3,7 @@ class Project {
     this._uuid = crypto.randomUUID(); 
     this._name = name; 
     this._list = list; 
+    this._isActive = false; 
   }
 
   get uuid() {
@@ -15,6 +16,18 @@ class Project {
 
   get list() {
     return this._list; 
+  }
+
+  get isActive() {
+    return this._isActive; 
+  }
+
+  activate() {
+    this._isActive = true; 
+  }
+
+  deactivate() {
+    this._isActive = false; 
   }
 }
 

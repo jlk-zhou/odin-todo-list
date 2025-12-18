@@ -1,0 +1,22 @@
+:root {
+  --sidebar-width: 250px
+}
+
+.sidebar {
+  width: var(--sidebar-width); 
+  height: 100vh; 
+  border: 1px solid black; 
+  display: flex; 
+  flex-direction: column; 
+  position: fixed; 
+}
+
+.sidebar-header {
+  display: flex; 
+  gap: 10px; 
+}
+
+.project {
+  margin-left: var(--sidebar-width); 
+  flex: 1; 
+}
