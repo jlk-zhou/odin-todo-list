@@ -1,4 +1,5 @@
 import { renderProject } from "../project/ui.js"; 
+import { addProjectHandler } from "./ux.js"; 
 import { selectProjectHandler } from "./ux.js"; 
 import "./style.css"; 
 
@@ -6,7 +7,22 @@ function renderAddProjectButton() {
   const addProjectButton = document.createElement("button"); 
   addProjectButton.classList.add("add-project"); 
   addProjectButton.textContent = "Add Project"; 
+  addProjectButton.addEventListener("click", addProjectHandler); 
   return addProjectButton; 
+}
+
+function renderProjectNameInput() {
+  const listItem = document.createElement("li"); 
+  listItem.classList.add("add-project-li"); 
+
+  const nameInput = document.createElement("input"); 
+  nameInput.setAttribute("id", "new-project-name"); 
+
+  // There is only one input, invisible by default
+  nameInput.style.display = "none"; 
+
+  listItem.appendChild(nameInput); 
+  return listItem; 
 }
 
 function renderRenameProjectButton() {
@@ -75,6 +91,9 @@ function renderSideBar(projects) {
     projectList.appendChild(selectProjectListItem); 
   });
 
+  const newProjectNameInput = renderProjectNameInput(); 
+  projectList.appendChild(newProjectNameInput); 
+
   sideBarDiv.appendChild(projectList); 
 
   return sideBarDiv; 
@@ -95,4 +114,7 @@ function renderActiveProject(projects) {
   return appPage; 
 }
 
-export { renderActiveProject }
+export { 
+  renderProjectNameInput, 
+  renderActiveProject
+}

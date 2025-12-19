@@ -7,6 +7,7 @@ class ProjectList {
     return this._list; 
   }
 
+  // Always display inbox when user opens the app
   init() {
     this._list.forEach(project => {
       if (project.name === "Inbox") {
