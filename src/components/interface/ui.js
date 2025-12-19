@@ -18,9 +18,6 @@ function renderProjectNameInput() {
   const nameInput = document.createElement("input"); 
   nameInput.setAttribute("id", "new-project-name"); 
 
-  // There is only one input, invisible by default
-  nameInput.style.display = "none"; 
-
   listItem.appendChild(nameInput); 
   return listItem; 
 }
@@ -93,6 +90,8 @@ function renderSideBar(projects) {
 
   const newProjectNameInput = renderProjectNameInput(); 
   projectList.appendChild(newProjectNameInput); 
+  // There is only one input, invisible by default
+  newProjectNameInput.style.display = "none"; 
 
   sideBarDiv.appendChild(projectList); 
 
