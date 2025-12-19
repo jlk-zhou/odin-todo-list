@@ -1,4 +1,5 @@
 import { renderProject } from "../project/ui.js"; 
+import { selectProjectHandler } from "./ux.js"; 
 import "./style.css"; 
 
 function renderAddProjectButton() {
@@ -6,6 +7,47 @@ function renderAddProjectButton() {
   addProjectButton.classList.add("add-project"); 
   addProjectButton.textContent = "Add Project"; 
   return addProjectButton; 
+}
+
+function renderRenameProjectButton() {
+  const renameProjectButton = document.createElement("button"); 
+  renameProjectButton.classList.add("rename-project"); 
+  renameProjectButton.textContent = "Rename"; 
+  return renameProjectButton; 
+}
+
+function renderDeleteProjectButton() {
+  const deleteProjectButton = document.createElement("button"); 
+  deleteProjectButton.classList.add("delete-project"); 
+  deleteProjectButton.textContent = "Delete"; 
+  return deleteProjectButton; 
+}
+
+function renderProjectListItem(project) {
+  const selectProjectListItem = document.createElement("li"); 
+
+  const selectProjectButton = document.createElement("button"); 
+  selectProjectButton.classList.add("select-project"); 
+  selectProjectButton.setAttribute("data-uuid", project.uuid); 
+  selectProjectButton.textContent = project.name; 
+  selectProjectButton.addEventListener("click", selectProjectHandler); 
+
+  selectProjectListItem.appendChild(selectProjectButton); 
+
+  if (project.name !== "Inbox") {
+    const optionsDiv = document.createElement("div"); 
+    optionsDiv.classList.add("options"); 
+
+    const renameProjectButton = renderRenameProjectButton(); 
+    optionsDiv.appendChild(renameProjectButton); 
+
+    const deleteProjectButton = renderDeleteProjectButton(); 
+    optionsDiv.appendChild(deleteProjectButton); 
+
+    selectProjectListItem.appendChild(optionsDiv); 
+  }
+
+  return selectProjectListItem
 }
 
 function renderSideBar(projects) {
@@ -29,14 +71,7 @@ function renderSideBar(projects) {
   projectList.classList.add("projects"); 
   
   projects.list.forEach(project => {
-    const selectProjectListItem = document.createElement("li"); 
-
-    const selectProjectButton = document.createElement("button"); 
-    selectProjectButton.classList.add("select-project"); 
-    selectProjectButton.textContent = project.name; 
-
-    selectProjectListItem.appendChild(selectProjectButton); 
-
+    const selectProjectListItem = renderProjectListItem(project); 
     projectList.appendChild(selectProjectListItem); 
   });
 

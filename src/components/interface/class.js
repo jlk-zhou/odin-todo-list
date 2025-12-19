@@ -17,12 +17,27 @@ class ProjectList {
     })
   }
 
+  getProjectByUUID(uuid) {
+    return this._list.find(project => project.uuid === uuid); 
+  }
+
   getActiveProject() {
     const activeProject = this._list.find(
       project => project.isActive === true
     ); 
     return activeProject; 
   }
+
+  setActiveProject(uuid) {
+    // Deactivate all projects
+    this._list.forEach(project => {
+      if (project.isActive) {
+        project.deactivate(); 
+      }
+    })
+    const activeProject = this.getProjectByUUID(uuid); 
+    activeProject.activate(); 
+    }
 }
 
 export { ProjectList }; 

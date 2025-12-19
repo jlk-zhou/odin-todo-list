@@ -1,6 +1,6 @@
 class TodoItem {
-  constructor(title, description, dueDate, priority) {
-    this._uuid = crypto.randomUUID(); 
+  constructor(uuid, title, description, dueDate, priority) {
+    this._uuid = uuid; 
     this._title = title; 
     this._description = description; 
     this._dueDate = dueDate; 

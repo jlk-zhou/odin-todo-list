@@ -1,6 +1,6 @@
 class Project {
-  constructor(name, list) {
-    this._uuid = crypto.randomUUID(); 
+  constructor(uuid, name, list) {
+    this._uuid = uuid; 
     this._name = name; 
     this._list = list; 
     this._isActive = false; 

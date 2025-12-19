@@ -7,6 +7,7 @@ function loadList(listData) {
   const todoItems = []; 
   listData.forEach(todo => {
     todoItems.push(new TodoItem(
+      todo.uuid, 
       todo.title, 
       todo.description, 
       todo.dueDate, 
@@ -21,6 +22,7 @@ function loadProject(projectData) {
   const projectList = loadList(projectData.list); 
 
   const project = new Project(
+    projectData.uuid, 
     projectData.name, 
     projectList, 
   )
