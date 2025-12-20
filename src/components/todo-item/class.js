@@ -54,6 +54,16 @@ class TodoItem {
   toggleDone() {
     this._done = !this._done; 
   }
+
+  toString() {
+    return {
+      "description": this._description, 
+      "dueDate": this._dueDate, 
+      "priority": this._priority, 
+      "title": this._title, 
+      "uuid": this._uuid, 
+    }
+  }
 }
 
 export { TodoItem }

@@ -12,7 +12,7 @@ function renderProject(project) {
   projectName.textContent = project.name; 
   projectDiv.appendChild(projectName); 
 
-  // const projectList = renderTodoList(project.list); 
+  // const projectList = renderTodoList(project); 
   // projectDiv.appendChild(projectList); 
 
   // const addTodoButton = renderAddTodoButton(); 

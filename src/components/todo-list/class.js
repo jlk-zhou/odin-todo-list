@@ -1,5 +1,7 @@
+import { TodoItem } from "../todo-item/class.js"; 
+
 class TodoList {
-  constructor(listItems) {
+  constructor({listItems = []} = {}) {
     this._listItems = listItems; 
   }
 
@@ -18,6 +20,14 @@ class TodoList {
   deleteItem(uuid) {
     const index = this._listItems.findIndex(item => item.uuid === uuid); 
     this._listItems.splice(index, 1); 
+  }
+
+  toString() {
+    const value = []; 
+    this._listItems.forEach(todoItem => {
+      value.push(todoItem.toString())
+    }); 
+    return value; 
   }
 }
 

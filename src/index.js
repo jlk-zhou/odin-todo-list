@@ -8,7 +8,7 @@ import "./style.css";
 // import { mountProject } from "./components/project/index.js"; 
 
 function main() {
-  // localStorage.setItem("data", JSON.stringify(data)); 
+  localStorage.setItem("data", JSON.stringify(data)); 
   const projects = loadProjectList(); 
   projects.init(); 
   

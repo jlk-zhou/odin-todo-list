@@ -14,18 +14,19 @@ function loadList(listData) {
       todo.priority
     )); 
   }); 
-  const list = new TodoList(todoItems); 
+  const list = new TodoList({listItems: todoItems}); 
   return list; 
 }
 
 function loadProject(projectData) {
   const projectList = loadList(projectData.list); 
 
-  const project = new Project(
-    projectData.uuid, 
-    projectData.name, 
-    projectList, 
-  )
+  const project = new Project({
+    name: projectData.name, 
+    uuid: projectData.uuid, 
+    list: projectList, 
+    isActive: projectData.isActive, 
+  })
 
   return project; 
 }

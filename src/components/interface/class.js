@@ -1,3 +1,5 @@
+import { Project } from "../project/class.js"; 
+
 class ProjectList {
   constructor(list) {
     this._list = list; 
@@ -38,7 +40,19 @@ class ProjectList {
     })
     const activeProject = this.getProjectByUUID(uuid); 
     activeProject.activate(); 
-    }
+  }
+
+  addNewProject(project) {
+    this._list.push(project); 
+  }
+
+  save() {
+    const value = []; 
+    this._list.forEach(project => {
+      value.push(project.toString()); 
+    })
+    localStorage.setItem("data", JSON.stringify(value)); 
+  }
 }
 
 export { ProjectList }; 

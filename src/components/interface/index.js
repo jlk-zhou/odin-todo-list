@@ -1,6 +1,10 @@
+import { loadProjectList } from "../../util/loader.js";
 import { renderActiveProject } from "./ui.js";
 
-function refreshProjectsInterface(projects) {
+function refreshProjectsInterface() {
+  const projects = loadProjectList(); 
+  console.log(projects); 
+
   const body = document.querySelector("body"); 
   body.textContent = ""; 
 

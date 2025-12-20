@@ -1,4 +1,5 @@
 import { loadProjectList } from "../../util/loader";
+import { Project } from "../project/class.js"; 
 import { renderProjectNameInput } from "./ui.js"; 
 import { refreshProjectsInterface } from "./index.js";
 
@@ -24,10 +25,21 @@ function saveNewProjectHandler(event) {
   ) {
     // Validate input
     if (projectNameInput.value) {
+
       // Save new project if name is valid
-      console.log(`Save new project: ${projectNameInput.value}`)
+      const localProjects = loadProjectList(); 
+
+      const emptyNewProject = new Project({name: projectNameInput.value}); 
+      localProjects.addNewProject(emptyNewProject); 
+
+      // Display new project page automatically once created
+      localProjects.setActiveProject(emptyNewProject.uuid); 
+
+      // Save the project locally
+      localProjects.save(); 
 
       // Refresh app page
+      refreshProjectsInterface(); 
     }
 
     // Make input disappear and remove save event listener from window
@@ -43,8 +55,9 @@ function selectProjectHandler(event) {
   const uuid = event.target.dataset.uuid; 
 
   projects.setActiveProject(uuid); 
+  projects.save(); 
 
-  refreshProjectsInterface(projects); 
+  refreshProjectsInterface(); 
 }
 
 export { 

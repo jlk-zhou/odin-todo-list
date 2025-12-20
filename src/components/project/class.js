@@ -1,9 +1,18 @@
+import { TodoList } from "../todo-list/class.js"; 
+
 class Project {
-  constructor(uuid, name, list) {
-    this._uuid = uuid; 
+  constructor(
+    {
+      name, 
+      uuid = crypto.randomUUID(), 
+      list = new TodoList(), 
+      isActive = false
+    } = {}
+  ) {
     this._name = name; 
+    this._uuid = uuid; 
     this._list = list; 
-    this._isActive = false; 
+    this._isActive = isActive; 
   }
 
   get uuid() {
@@ -28,6 +37,15 @@ class Project {
 
   deactivate() {
     this._isActive = false; 
+  }
+
+  toString() {
+    return {
+      "list": this._list.toString(), 
+      "name": this._name, 
+      "uuid": this._uuid, 
+      "isActive": this._isActive
+    }
   }
 }
 

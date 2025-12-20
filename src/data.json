@@ -24,7 +24,8 @@
         "dueDate": "2025-12-24", 
         "priority": 2
       }
-    ]
+    ], 
+    "isActive": true
   }, 
   {
     "name": "Work", 
