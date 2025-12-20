@@ -3,7 +3,11 @@ import { renderActiveProject } from "./ui.js";
 
 function refreshProjectsInterface() {
   const projects = loadProjectList(); 
-  console.log(projects); 
+
+  // Just in case the active project gets deleted
+  if (!projects.getActiveProject()) {
+    projects.init(); 
+  }
 
   const body = document.querySelector("body"); 
   body.textContent = ""; 

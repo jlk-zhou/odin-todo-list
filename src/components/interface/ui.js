@@ -1,6 +1,9 @@
 import { renderProject } from "../project/ui.js"; 
-import { addProjectHandler } from "./ux.js"; 
-import { selectProjectHandler } from "./ux.js"; 
+import { 
+  addProjectHandler,  
+  selectProjectHandler, 
+  deleteProjectHandler
+} from "./ux.js"; 
 import "./style.css"; 
 
 function renderAddProjectButton() {
@@ -33,15 +36,17 @@ function renderDeleteProjectButton() {
   const deleteProjectButton = document.createElement("button"); 
   deleteProjectButton.classList.add("delete-project"); 
   deleteProjectButton.textContent = "Delete"; 
+  deleteProjectButton.addEventListener("click", deleteProjectHandler); 
   return deleteProjectButton; 
 }
 
 function renderProjectListItem(project) {
   const selectProjectListItem = document.createElement("li"); 
+  selectProjectListItem.setAttribute("data-uuid", project.uuid); 
+  selectProjectListItem.classList.add("project-li"); 
 
   const selectProjectButton = document.createElement("button"); 
   selectProjectButton.classList.add("select-project"); 
-  selectProjectButton.setAttribute("data-uuid", project.uuid); 
   selectProjectButton.textContent = project.name; 
   selectProjectButton.addEventListener("click", selectProjectHandler); 
 

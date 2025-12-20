@@ -46,6 +46,12 @@ class ProjectList {
     this._list.push(project); 
   }
 
+  deleteProject(uuid) {
+    const project = this.getProjectByUUID(uuid); 
+    const index = this._list.indexOf(project); 
+    this._list.splice(index, 1); 
+  }
+
   save() {
     const value = []; 
     this._list.forEach(project => {

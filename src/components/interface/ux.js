@@ -52,7 +52,7 @@ function saveNewProjectHandler(event) {
 
 function selectProjectHandler(event) {
   const projects = loadProjectList(); 
-  const uuid = event.target.dataset.uuid; 
+  const uuid = event.target.closest(".project-li").dataset.uuid; 
 
   projects.setActiveProject(uuid); 
   projects.save(); 
@@ -60,7 +60,16 @@ function selectProjectHandler(event) {
   refreshProjectsInterface(); 
 }
 
+function deleteProjectHandler(event) {
+  const projects = loadProjectList(); 
+  const uuid = event.target.closest(".project-li").dataset.uuid; 
+  projects.deleteProject(uuid); 
+  projects.save(); 
+  refreshProjectsInterface(); 
+}
+
 export { 
   addProjectHandler,
   selectProjectHandler, 
+  deleteProjectHandler
 }
