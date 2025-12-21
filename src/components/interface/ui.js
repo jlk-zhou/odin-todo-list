@@ -2,6 +2,7 @@ import { renderProject } from "../project/ui.js";
 import { 
   addProjectHandler,  
   selectProjectHandler, 
+  renameProjectButtonHandler,
   deleteProjectHandler
 } from "./ux.js"; 
 import "./style.css"; 
@@ -16,7 +17,7 @@ function renderAddProjectButton() {
 
 function renderProjectNameInput() {
   const listItem = document.createElement("li"); 
-  listItem.classList.add("add-project-li"); 
+  listItem.classList.add("new-project-name-li"); 
 
   const nameInput = document.createElement("input"); 
   nameInput.setAttribute("id", "new-project-name"); 
@@ -29,6 +30,7 @@ function renderRenameProjectButton() {
   const renameProjectButton = document.createElement("button"); 
   renameProjectButton.classList.add("rename-project"); 
   renameProjectButton.textContent = "Rename"; 
+  renameProjectButton.addEventListener("click", renameProjectButtonHandler); 
   return renameProjectButton; 
 }
 
@@ -44,6 +46,9 @@ function renderProjectListItem(project) {
   const selectProjectListItem = document.createElement("li"); 
   selectProjectListItem.setAttribute("data-uuid", project.uuid); 
   selectProjectListItem.classList.add("project-li"); 
+  if (project.name === "Inbox") {
+    selectProjectListItem.classList.add("Inbox"); 
+  }
 
   const selectProjectButton = document.createElement("button"); 
   selectProjectButton.classList.add("select-project"); 
@@ -57,12 +62,22 @@ function renderProjectListItem(project) {
     optionsDiv.classList.add("options"); 
 
     const renameProjectButton = renderRenameProjectButton(); 
+    renameProjectButton.dataset.uuid = project.uuid; 
     optionsDiv.appendChild(renameProjectButton); 
 
     const deleteProjectButton = renderDeleteProjectButton(); 
     optionsDiv.appendChild(deleteProjectButton); 
 
     selectProjectListItem.appendChild(optionsDiv); 
+
+    const renameInput = document.createElement("input"); 
+    renameInput.name = "new-project-name"; 
+    renameInput.classList.add("rename-input"); 
+    renameInput.dataset.uuid = project.uuid; 
+    renameInput.style.display = "none"; 
+    renameInput.value = project.name; 
+
+    selectProjectListItem.appendChild(renameInput); 
   }
 
   return selectProjectListItem

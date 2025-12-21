@@ -31,6 +31,10 @@ class Project {
     return this._isActive; 
   }
 
+  set name(newName) {
+    this._name = newName; 
+  }
+
   activate() {
     this._isActive = true; 
   }
