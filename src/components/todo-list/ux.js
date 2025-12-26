@@ -1,5 +1,5 @@
 import { TodoItem } from "../todo-item/class.js";
-import { exampleList } from "../../data.js"; 
+// import { exampleList } from "../../data.js"; 
 import { 
   renderAddTodoButton, 
   renderAddTodoForm, 

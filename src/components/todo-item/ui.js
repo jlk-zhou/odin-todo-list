@@ -59,13 +59,13 @@ function renderSummaryContent(todoItem) {
   // Render due date
   const dueDate = document.createElement("p"); 
   dueDate.classList.add("due-date"); 
-  const options = {
-    day: "2-digit", 
-    month: "short", 
-    year: "numeric", 
-  }
-  if (!isNaN(todoItem.dueDate))
+  if (!isNaN(todoItem.dueDate) && todoItem.dueDate !== null)
     {
+      const options = {
+        day: "2-digit", 
+        month: "short", 
+        year: "numeric", 
+      }
       const date = new Intl.DateTimeFormat("en-GB", options)
                            .format(todoItem.dueDate); 
       dueDate.textContent = `${date}`; 

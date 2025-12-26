@@ -1,11 +1,11 @@
 class TodoItem {
-  constructor(uuid, title, description, dueDate, priority) {
+  constructor(uuid, title, description, dueDate, priority, done = false) {
     this._uuid = uuid; 
     this._title = title; 
     this._description = description; 
     this._dueDate = dueDate; 
     this._priority = priority; 
-    this._done = false; 
+    this._done = done; 
   }
 
   // Getters
@@ -62,6 +62,7 @@ class TodoItem {
       "priority": this._priority, 
       "title": this._title, 
       "uuid": this._uuid, 
+      "done": this._done, 
     }
   }
 }

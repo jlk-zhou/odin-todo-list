@@ -1,7 +1,7 @@
-// import { 
-//   renderTodoList, 
-//   renderAddTodoButton
-// } from "../todo-list/ui.js"; 
+import { 
+  renderTodoList, 
+  // renderAddTodoButton
+} from "../todo-list/ui.js"; 
 
 function renderProject(project) {
   const projectDiv = document.createElement("div"); 
@@ -12,8 +12,8 @@ function renderProject(project) {
   projectName.textContent = project.name; 
   projectDiv.appendChild(projectName); 
 
-  // const projectList = renderTodoList(project); 
-  // projectDiv.appendChild(projectList); 
+  const projectList = renderTodoList(project.list); 
+  projectDiv.appendChild(projectList); 
 
   // const addTodoButton = renderAddTodoButton(); 
   // projectDiv.appendChild(addTodoButton); 

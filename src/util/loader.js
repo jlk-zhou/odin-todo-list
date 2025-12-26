@@ -6,12 +6,14 @@ import { TodoItem } from "../components/todo-item/class.js";
 function loadList(listData) { 
   const todoItems = []; 
   listData.forEach(todo => {
+    const dueDate = new Date(todo.dueDate)
     todoItems.push(new TodoItem(
       todo.uuid, 
       todo.title, 
       todo.description, 
-      todo.dueDate, 
-      todo.priority
+      dueDate, 
+      todo.priority, 
+      todo.done, 
     )); 
   }); 
   const list = new TodoList({listItems: todoItems}); 

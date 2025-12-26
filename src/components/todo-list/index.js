@@ -20,6 +20,6 @@ function updateTodoList(list) {
 }
 
 export { 
-  mountTodoList, 
+  // mountTodoList, 
   updateTodoList, 
 }; 

@@ -1,22 +1,25 @@
-import { exampleList } from "../../data.js";
+// import { exampleList } from "../../data.js";
+import { loadProjectList } from "../../util/loader.js"; 
+import { refreshProjectsInterface } from "../interface/index.js";
 import { renderEditTodoForm } from "./ui.js"; 
 import { updateTodoList } from "../todo-list/index.js";
 import { renderAddTodoButton } from "../todo-list/ui.js";
 
 function toggleDoneHandler(event) {
+  const projects = loadProjectList()
+  const listOfActiveProject = projects.getActiveProject().list
   const uuid = event.target.closest(".todo-item").dataset.uuid; 
-  const item = exampleList.getItem(uuid); 
+  const item = listOfActiveProject.getItem(uuid); 
   item.toggleDone(); 
+  console.log(item); 
 
-  updateTodoList(exampleList); 
+  projects.save(); 
+  refreshProjectsInterface(); 
 }
 
 function editHandler(event) {
-  let todoItem = event.target.closest(".todo-item"); 
+  const todoItem = event.target.closest(".todo-item"); 
   const uuid = todoItem.dataset.uuid;
-
-  updateTodoList(exampleList); 
-  todoItem = document.querySelector(`[data-uuid="${uuid}"]`); 
 
   // Remove existing form if any
   const existingForm = document.querySelector(".todo-form"); 
@@ -34,10 +37,12 @@ function editHandler(event) {
   todoEditForm.setAttribute("data-uuid", uuid); 
   
   // Populate the form with todo item info
-  const data = exampleList.getAllItems().find(item => item.uuid === uuid); 
+  const listOfActiveProject = loadProjectList().getActiveProject().list; 
+
+  const data = listOfActiveProject.getItem(uuid); 
   todoEditForm.querySelector("#title").value = data.title; 
   todoEditForm.querySelector("#description").value = data.description; 
-  if (!isNaN(data.dueDate)) {
+  if (!isNaN(data.dueDate) && data.dueDate !== null) {
     todoEditForm.querySelector("#due-date").value = data.dueDate.toISOString().split("T")[0]; 
   }; 
   if (!(data.priority === null)) {
@@ -59,15 +64,15 @@ function cancelButtonHandler(event) {
     body.appendChild(addTodoButton); 
   }
   addTodoForm.remove(); 
-
-  updateTodoList(exampleList); 
+  refreshProjectsInterface(); 
 }
 
 function saveButtonHandler(event) {
   event.preventDefault(); 
 
   let uuid = event.target.closest(".todo-form.edit").dataset.uuid; 
-  const todoItem = exampleList.getAllItems().find(item => item.uuid === uuid); 
+  const projects = loadProjectList()
+  const todoItem = projects.getActiveProject().list.getItem(uuid); 
 
   const todoForm = document.querySelector(".todo-form.edit"); 
   const formData = new FormData(todoForm); 
@@ -82,7 +87,8 @@ function saveButtonHandler(event) {
   todoItem.setDueDate(dueDate); 
   todoItem.setPriority(priority); 
 
-  updateTodoList(exampleList); 
+  projects.save();
+  refreshProjectsInterface(); 
 }
 
 function deleteHandler(event) {
