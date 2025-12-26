@@ -4,7 +4,7 @@ import { renderActiveProject } from "./components/interface/ui.js";
 import "./style.css"; 
 
 function main() {
-  // localStorage.setItem("data", JSON.stringify(data)); 
+  localStorage.setItem("data", JSON.stringify(data)); 
   const projects = loadProjectList(); 
   projects.init(); 
   

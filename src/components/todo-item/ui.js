@@ -46,15 +46,17 @@ function renderSummaryContent(todoItem) {
   headerDiv.appendChild(title); 
   
   // Render description
-  const description = document.createElement("p"); 
-  description.classList.add("description"); 
-  
-  // Truncate multiline descriptions with ellipses
-  const descriptionText = todoItem.description.split("\n", 2)
-  description.textContent = `
-    ${descriptionText[0]}${descriptionText[1] ? "..." : ""}
-  `; 
-  summaryDiv.appendChild(description); 
+  if (todoItem.description) {
+    const description = document.createElement("p"); 
+    description.classList.add("description"); 
+    
+    // Truncate multiline descriptions with ellipses
+    const descriptionText = todoItem.description.split("\n", 2)
+    description.textContent = `
+      ${descriptionText[0]}${descriptionText[1] ? "..." : ""}
+    `; 
+    summaryDiv.appendChild(description); 
+  }
 
   // Render due date
   const dueDate = document.createElement("p"); 

@@ -11,7 +11,6 @@ function toggleDoneHandler(event) {
   const uuid = event.target.closest(".todo-item").dataset.uuid; 
   const item = listOfActiveProject.getItem(uuid); 
   item.toggleDone(); 
-  console.log(item); 
 
   projects.save(); 
   refreshProjectsInterface(); 
@@ -25,11 +24,12 @@ function editHandler(event) {
   const existingForm = document.querySelector(".todo-form"); 
   if (existingForm) {
     if (existingForm.classList.contains("add-item")) {
-      const body = document.querySelector("body"); 
+      const projectBody = document.querySelector(".project"); 
       const addTodoButton = renderAddTodoButton(); 
-      body.appendChild(addTodoButton); 
+      projectBody.appendChild(addTodoButton); 
     }
     existingForm.remove(); 
+    refreshProjectsInterface(); 
   }
   
   // Render new edit form

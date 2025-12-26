@@ -1,6 +1,6 @@
 import { 
   renderTodoList, 
-  // renderAddTodoButton
+  renderAddTodoButton
 } from "../todo-list/ui.js"; 
 
 function renderProject(project) {
@@ -15,8 +15,8 @@ function renderProject(project) {
   const projectList = renderTodoList(project.list); 
   projectDiv.appendChild(projectList); 
 
-  // const addTodoButton = renderAddTodoButton(); 
-  // projectDiv.appendChild(addTodoButton); 
+  const addTodoButton = renderAddTodoButton(); 
+  projectDiv.appendChild(addTodoButton); 
 
   return projectDiv; 
 }

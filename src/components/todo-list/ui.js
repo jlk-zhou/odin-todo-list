@@ -3,11 +3,11 @@ import {
   renderTodoForm, 
 } from "../todo-item/ui";
 
-// import { 
-//   addTodoHandler, 
-//   cancelButtonHandler, 
-//   saveButtonHandler
-// } from "./ux.js"; 
+import { 
+  addTodoHandler, 
+  cancelButtonHandler, 
+  saveButtonHandler
+} from "./ux.js"; 
 
 import "./style.css"; 
 

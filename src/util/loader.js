@@ -6,15 +6,20 @@ import { TodoItem } from "../components/todo-item/class.js";
 function loadList(listData) { 
   const todoItems = []; 
   listData.forEach(todo => {
-    const dueDate = new Date(todo.dueDate)
-    todoItems.push(new TodoItem(
-      todo.uuid, 
-      todo.title, 
-      todo.description, 
-      dueDate, 
-      todo.priority, 
-      todo.done, 
-    )); 
+    let dueDate; 
+    if (todo.dueDate) {
+      dueDate = new Date(todo.dueDate); 
+    } else {
+      dueDate = null; 
+    }
+    todoItems.push(new TodoItem({
+      uuid: todo.uuid, 
+      title: todo.title, 
+      description: todo.description, 
+      dueDate: dueDate, 
+      priority: todo.priority, 
+      done: todo.done, 
+    })); 
   }); 
   const list = new TodoList({listItems: todoItems}); 
   return list; 

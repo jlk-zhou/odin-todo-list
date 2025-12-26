@@ -4,7 +4,9 @@ import {
   renderAddTodoButton, 
   renderAddTodoForm, 
 } from "./ui.js";
-import { updateTodoList } from "./index.js";
+import { loadProjectList } from "../../util/loader.js";
+import { refreshProjectsInterface } from "../interface/index.js";
+// import { updateTodoList } from "./index.js";
 
 function addTodoHandler(event) {
   event.currentTarget.remove(); 
@@ -15,11 +17,13 @@ function addTodoHandler(event) {
     existingForm.remove(); 
   }
 
-  updateTodoList(exampleList); 
+  refreshProjectsInterface(); 
+  const addTodoButton = document.querySelector(".add-todo-button"); 
+  addTodoButton.remove(); 
 
-  const body = document.querySelector("body")
+  const projectBody = document.querySelector(".project")
   const addTodoForm = renderAddTodoForm(); 
-  body.appendChild(addTodoForm); 
+  projectBody.appendChild(addTodoForm); 
 }
 
 function cancelButtonHandler(event) {
@@ -27,11 +31,9 @@ function cancelButtonHandler(event) {
   const addTodoForm = document.querySelector(".todo-form.add-item"); 
   addTodoForm.remove(); 
 
-  updateTodoList(exampleList); 
-
-  const body = document.querySelector("body"); 
+  const projectBody = document.querySelector(".project"); 
   const addTodoButton = renderAddTodoButton(); 
-  body.appendChild(addTodoButton); 
+  projectBody.appendChild(addTodoButton); 
 }
 
 function saveButtonHandler(event) {
@@ -41,23 +43,30 @@ function saveButtonHandler(event) {
 
   const title = formData.get("title"); 
   const description = formData.get("description"); 
-  const dueDate = new Date(formData.get("due-date")); 
   const priority = +formData.get("priority"); 
 
-  const newTodoItem = new TodoItem(
+  const newTodoItem = new TodoItem({
     title, 
     description, 
-    dueDate, 
     priority
-  )
+  })
 
-  exampleList.addItem(newTodoItem); 
+  if (formData.get("due-date")) {
+    newTodoItem.setDueDate(new Date(formData.get("due-date")))
+  }; 
 
-  updateTodoList(exampleList); 
+  const projects = loadProjectList(); 
+  const listOfActiveProject = projects.getActiveProject().list
+  listOfActiveProject.addItem(newTodoItem); 
+  projects.save(); 
+  refreshProjectsInterface(); 
 
-  const body = document.querySelector("body"); 
+  const addTodoButton = document.querySelector(".add-todo-button"); 
+  addTodoButton.remove(); 
+
+  const projectBody = document.querySelector(".project"); 
   addTodoForm.reset(); 
-  body.appendChild(addTodoForm); 
+  projectBody.appendChild(addTodoForm); 
 }
 
 export { 
