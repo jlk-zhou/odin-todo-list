@@ -2,7 +2,6 @@
 import { loadProjectList } from "../../util/loader.js"; 
 import { refreshProjectsInterface } from "../interface/index.js";
 import { renderEditTodoForm } from "./ui.js"; 
-import { updateTodoList } from "../todo-list/index.js";
 import { renderAddTodoButton } from "../todo-list/ui.js";
 
 function toggleDoneHandler(event) {
@@ -92,9 +91,12 @@ function saveButtonHandler(event) {
 }
 
 function deleteHandler(event) {
+  const projects = loadProjectList(); 
+  const listOfActiveProject = projects.getActiveProject().list; 
   const uuid = event.target.closest(".todo-item").dataset.uuid;
-  exampleList.deleteItem(uuid); 
-  updateTodoList(exampleList); 
+  listOfActiveProject.deleteItem(uuid); 
+  projects.save();
+  refreshProjectsInterface();  
 }
 
 function detailViewHandler(event) {
