@@ -1,6 +1,9 @@
 import { loadProjectList } from "../../util/loader.js"; 
 import { refreshProjectsInterface } from "../interface/index.js";
-import { renderEditTodoForm } from "./ui.js"; 
+import { 
+  renderEditTodoForm, 
+  renderItemDialog, 
+} from "./ui.js"; 
 import { renderAddTodoButton } from "../todo-list/ui.js";
 
 function toggleDoneHandler(event) {
@@ -12,6 +15,29 @@ function toggleDoneHandler(event) {
 
   projects.save(); 
   refreshProjectsInterface(); 
+}
+
+function expandHandler(event) {
+  const uuid = event.target.closest(".todo-item").dataset.uuid; 
+
+  const projects = loadProjectList(); 
+  const listOfActiveProject = projects.getActiveProject().list; 
+  const todoItem = listOfActiveProject.getItem(uuid); 
+
+  console.log(todoItem); 
+  
+  const dialog = renderItemDialog(todoItem); 
+
+  const appPage = document.querySelector(".app-page"); 
+  appPage.appendChild(dialog);
+
+  dialog.showModal(); 
+}
+
+function closeDialogHandler(event) {
+  const dialog = document.querySelector(".item-detail"); 
+  dialog.close(); 
+  dialog.remove(); 
 }
 
 function editHandler(event) {
@@ -98,15 +124,12 @@ function deleteHandler(event) {
   refreshProjectsInterface();  
 }
 
-function detailViewHandler(event) {
-  const uuid = event.target.closest(".todo-item").dataset.uuid;
-}
-
 export { 
   toggleDoneHandler, 
+  expandHandler, 
+  closeDialogHandler, 
   editHandler, 
   cancelButtonHandler, 
   saveButtonHandler, 
   deleteHandler, 
-  detailViewHandler, 
 }; 

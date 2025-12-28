@@ -1,17 +1,25 @@
 import "./style.css"; 
 import { 
-  toggleDoneHandler, 
+  toggleDoneHandler,
+  expandHandler, 
+  closeDialogHandler, 
   editHandler,
   cancelButtonHandler, 
   saveButtonHandler, 
-  deleteHandler,  
-  detailViewHandler, 
+  deleteHandler, 
 } from "./ux.js"; 
 
 function renderOptions() {
   // Create an option div for actions like edit and delete
   const optionsDiv = document.createElement("div"); 
   optionsDiv.classList.add("options"); 
+
+  // Render expand button
+  const expandButton = document.createElement("button"); 
+  expandButton.classList.add("expand"); 
+  expandButton.textContent = "More"; 
+  expandButton.addEventListener("click", expandHandler); 
+  optionsDiv.appendChild(expandButton); 
 
   // Render edit button
   const editButton = document.createElement("button"); 
@@ -113,10 +121,74 @@ function renderTodoItem(todoItem) {
   const summaryDiv = renderSummaryContent(todoItem); 
   containerDiv.appendChild(summaryDiv);  
 
-  // Add event listener to handle elaborate task view dialog
-  containerDiv.addEventListener("click", detailViewHandler); 
-
   return containerDiv; 
+}
+
+function renderItemDialog(todoItem) {
+  const dialog = document.createElement("dialog");
+  dialog.classList.add("item-detail"); 
+
+  const closeDialogButton = document.createElement("button"); 
+  closeDialogButton.classList.add("close-dialog"); 
+  closeDialogButton.textContent = "Close"; 
+  closeDialogButton.addEventListener("click", closeDialogHandler); 
+  dialog.appendChild(closeDialogButton); 
+
+  // Title is mandatory
+  const title = document.createElement("h2"); 
+  title.classList.add("title-detail"); 
+  title.textContent = todoItem.title; 
+  dialog.appendChild(title); 
+
+  // Description is optional so check if it exists before rendering
+  if (todoItem.description) {
+    const description = document.createElement("p"); 
+    description.classList.add("description-detail"); 
+    description.textContent = todoItem.description; 
+    dialog.appendChild(description); 
+  }
+
+  // Same goes for due date
+  if (todoItem.dueDate) {
+    const dueDate = document.createElement("p"); 
+    dueDate.classList.add("due-date-detail"); 
+
+    const options = {
+      day: "numeric", 
+      month: "short", 
+      year: "numeric", 
+    }
+
+    const date = new Intl.DateTimeFormat("en-GB", options).format(todoItem.dueDate); 
+    dueDate.textContent = `Due ${date}`; 
+
+    dialog.appendChild(dueDate); 
+  }
+
+  // Priority has to exist; even "none" is a priority
+  const priority = document.createElement("p"); 
+  priority.classList.add("priority-detail"); 
+
+  let priorityText; 
+  switch (todoItem.priority) {
+    case 0: 
+      priorityText = "None"; 
+      break; 
+    case 1: 
+      priorityText = "High"; 
+      break; 
+    case 2: 
+      priorityText = "Medium"; 
+      break; 
+    case 3: 
+      priorityText = "Low"; 
+      break; 
+  }
+
+  priority.textContent = `Priority: ${priorityText}`; 
+  dialog.appendChild(priority); 
+
+  return dialog; 
 }
 
 function renderTodoForm() {
@@ -229,6 +301,7 @@ function renderEditTodoForm() {
 
 export { 
   renderTodoItem, 
+  renderItemDialog, 
   renderTodoForm, 
   renderEditTodoForm, 
 }; 
