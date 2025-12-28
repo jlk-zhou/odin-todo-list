@@ -1,12 +1,10 @@
 import { TodoItem } from "../todo-item/class.js";
-// import { exampleList } from "../../data.js"; 
 import { 
   renderAddTodoButton, 
   renderAddTodoForm, 
 } from "./ui.js";
 import { loadProjectList } from "../../util/loader.js";
 import { refreshProjectsInterface } from "../interface/index.js";
-// import { updateTodoList } from "./index.js";
 
 function addTodoHandler(event) {
   event.currentTarget.remove(); 

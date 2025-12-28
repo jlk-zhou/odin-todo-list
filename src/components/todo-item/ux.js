@@ -1,4 +1,3 @@
-// import { exampleList } from "../../data.js";
 import { loadProjectList } from "../../util/loader.js"; 
 import { refreshProjectsInterface } from "../interface/index.js";
 import { renderEditTodoForm } from "./ui.js"; 
