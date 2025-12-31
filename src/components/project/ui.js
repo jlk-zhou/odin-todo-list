@@ -2,6 +2,7 @@ import {
   renderTodoList, 
   renderAddTodoButton
 } from "../todo-list/ui.js"; 
+import "./style.css"; 
 
 function renderProject(project) {
   const projectDiv = document.createElement("div"); 

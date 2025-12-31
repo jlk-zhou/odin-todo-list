@@ -1,3 +1,7 @@
 .add-todo-form {
   border: 1px solid black; 
 }
+
+.todo-item {
+  border-bottom: 1px solid grey; 
+}

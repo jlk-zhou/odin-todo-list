@@ -1,36 +1,141 @@
 :root {
-  --sidebar-width: 250px
+  --sidebar-width: 250px; 
+  --dark-color-font: #1c2227; 
+  --dark-color: #3b4953; 
+  --semi-dark-color: #5A7863;
+  --semi-light-color: #90Ab8B; 
+  --light-color-shade: #c1cead; 
+  --light-color: #ebf4dd; 
+  --black-icon-light-filter: brightness(0) saturate(100%) invert(92%) sepia(4%) saturate(1172%) hue-rotate(357deg) brightness(110%) contrast(91%);
+  --black-icon-dark-filter: brightness(0) saturate(100%) invert(25%) sepia(5%) saturate(2379%) hue-rotate(163deg) brightness(94%) contrast(84%);
+  --font-family: "Manrope", "Inter", "Roboto", "Helvetica", "Arial", "sans-serif"; 
+  box-sizing: border-box;
+}
+
+.app-page {
+  display: flex; 
+  font-family: var(--font-family); 
 }
 
 .sidebar {
   width: var(--sidebar-width); 
+  background-color: var(--light-color);
   height: 100vh; 
-  border: 1px solid black; 
   display: flex; 
+  position: sticky; 
+  top: 0; 
   flex-direction: column; 
-  position: fixed; 
+  padding: 30px 15px; 
 }
 
 .sidebar-header {
   display: flex; 
-  gap: 10px; 
+  align-items: center; 
+  justify-content: space-between; 
+}
+
+.sidebar-title {
+  color: var(--dark-color); 
+  margin: 0px; 
+}
+
+.add-project {
+  background-color: transparent; 
+  width: 30px; 
+  height: 30px; 
+  border: none; 
+  cursor: pointer; 
+  padding: 0px; 
+  border-radius: 50%;
+}
+
+.add-project:hover {
+  background-color: var(--dark-color); 
+}
+
+.add-project img {
+  width: 30px; 
+  height: 30px; 
+  filter: var(--black-icon-dark-filter); 
+}
+
+.add-project:hover img {
+  filter: var(--black-icon-light-filter); 
 }
 
 .projects {
   padding: 0px; 
 }
 
-.projects > li {
+.project-li {
   display: flex; 
   justify-content: space-between;
   list-style: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+}
+
+.select-project, 
+input.rename-input, 
+input#new-project-name {
+  background-color: transparent; 
+  border: none; 
+  width: 100%; 
+  padding: 10px 15px; 
+  text-align: left; 
+  font-size: 16px; 
+  color: var(--dark-color-font); 
+  box-sizing: border-box; 
+}
+
+input.rename-input, 
+input#new-project-name:focus {
+  outline: none; 
+  border-radius: 5px; 
+  background-color: var(--light-color-shade); 
+}
+
+.project-li:hover {
+  background-color: var(--light-color-shade); 
 }
 
 .projects .options {
-  display: flex; 
+  display: none; 
+  padding-right: 15px; 
 }
 
-.project {
-  margin-left: var(--sidebar-width); 
-  flex: 1; 
+.project-li:hover > .options {
+  display: flex; 
+  align-items: center; 
+  gap: 5px; 
+}
+
+.project-li .options button {
+  background-color: transparent; 
+  border: none; 
+  cursor: pointer; 
+  color: var(--dark-color-font); 
+  width: 30px; 
+  height: 30px; 
+  padding: 0px; 
+}
+
+.options .rename-project {
+  background-image: url("./img/pencil-circle-outline.svg"); 
+  filter: var(--black-icon-dark-filter); 
+}
+
+.options .rename-project:hover {
+  background-image: url("./img/pencil-circle.svg"); 
+  filter: var(--black-icon-dark-filter); 
+}
+
+.options .delete-project {
+  background-image: url("./img/delete-circle-outline.svg"); 
+  filter: var(--black-icon-dark-filter); 
+}
+
+.options .delete-project:hover {
+  background-image: url("./img/delete-circle.svg");
+  filter: var(--black-icon-dark-filter); 
 }

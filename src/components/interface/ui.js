@@ -6,12 +6,20 @@ import {
   deleteProjectHandler
 } from "./ux.js"; 
 import "./style.css"; 
+import plusIcon from "./img/plus.svg"; 
 
 function renderAddProjectButton() {
   const addProjectButton = document.createElement("button"); 
   addProjectButton.classList.add("add-project"); 
-  addProjectButton.textContent = "Add Project"; 
+
+  const img = document.createElement("img"); 
+  img.setAttribute("src", plusIcon); 
+  img.setAttribute("alt", "Add Project"); 
+
+  addProjectButton.appendChild(img); 
+
   addProjectButton.addEventListener("click", addProjectHandler); 
+
   return addProjectButton; 
 }
 
@@ -29,7 +37,7 @@ function renderProjectNameInput() {
 function renderRenameProjectButton() {
   const renameProjectButton = document.createElement("button"); 
   renameProjectButton.classList.add("rename-project"); 
-  renameProjectButton.textContent = "Rename"; 
+
   renameProjectButton.addEventListener("click", renameProjectButtonHandler); 
   return renameProjectButton; 
 }
@@ -37,7 +45,6 @@ function renderRenameProjectButton() {
 function renderDeleteProjectButton() {
   const deleteProjectButton = document.createElement("button"); 
   deleteProjectButton.classList.add("delete-project"); 
-  deleteProjectButton.textContent = "Delete"; 
   deleteProjectButton.addEventListener("click", deleteProjectHandler); 
   return deleteProjectButton; 
 }

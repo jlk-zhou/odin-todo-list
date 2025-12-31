@@ -1,0 +1,13 @@
+:root {
+  --dark-color-font: #1c2227; 
+}
+
+.project {
+  padding: 14px max(10%, 30px); 
+  flex: 1; 
+}
+
+.project > h3 {
+  color: var(--dark-color-font); 
+  font-size: 1.5em; 
+}

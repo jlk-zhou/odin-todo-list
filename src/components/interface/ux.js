@@ -2,7 +2,7 @@ import { loadProjectList } from "../../util/loader";
 import { Project } from "../project/class.js"; 
 import { refreshProjectsInterface } from "./index.js";
 
-function addProjectHandler(event) {
+function addProjectHandler() {
   const projectNameInputLi = document.querySelector(".new-project-name-li"); 
   projectNameInputLi.style.display = "block"; 
 
@@ -19,7 +19,7 @@ function saveNewProjectHandler(event) {
   const addProjectButton = document.querySelector(".add-project"); 
   if (
     (event.target !== projectNameInput
-    && event.target !== addProjectButton)
+    && event.target.parentElement !== addProjectButton)
     || event.key === "Enter"
   ) {
     // Validate input
@@ -74,7 +74,7 @@ function renameProjectButtonHandler(event) {
         input.focus(); 
       } else {
         selectButton.style.display = "block"; 
-        options.style.display = "block"; 
+        options.style.display = "none"; 
         input.style.display = "none"; 
       }
     }
@@ -85,18 +85,22 @@ function renameProjectButtonHandler(event) {
 
 function saveEditProjectNameHandler(event) {
   const input = document.querySelector('input[style="display: block;"]'); 
+
   const clickedOutside = (
     (event.target !== input
-    && !event.target.classList.contains("rename-project"))
-  );
+    && (!event.target.classList.contains("rename-project")))
+  ); 
 
+  console.log(event.target); 
 
   if (clickedOutside || event.key === "Enter") {
-    if (input.value) {
-      const projects = loadProjectList()
-      const project = projects.getProjectByUUID(input.dataset.uuid); 
-      project.name = input.value; 
-      projects.save(); 
+    if (input) {
+      if (input.value) {
+        const projects = loadProjectList()
+        const project = projects.getProjectByUUID(input.dataset.uuid); 
+        project.name = input.value; 
+        projects.save(); 
+      }
     }
     refreshProjectsInterface(); 
     window.removeEventListener("click", saveEditProjectNameHandler); 
