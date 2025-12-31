@@ -84,7 +84,7 @@ input#new-project-name {
   padding: 10px 15px; 
   text-align: left; 
   font-size: 16px; 
-  color: var(--dark-color-font); 
+  color: var(--dark-color); 
   box-sizing: border-box; 
 }
 

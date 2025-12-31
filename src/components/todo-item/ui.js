@@ -196,34 +196,25 @@ function renderTodoForm() {
   const todoForm = document.createElement("form"); 
   todoForm.classList.add("todo-form"); 
 
-  // Render the todo title label field
-  const titleLabel = document.createElement("label"); 
-  titleLabel.setAttribute("for", "title"); 
-  titleLabel.textContent = "Todo Title: "; 
-  todoForm.appendChild(titleLabel); 
-
   // Render the todo title input field
   const titleInput = document.createElement("input"); 
   titleInput.setAttribute("type", "text"); 
   titleInput.setAttribute("name", "title"); 
   titleInput.setAttribute("id", "title"); 
+  titleInput.setAttribute("placeholder", "Task Name"); 
   todoForm.appendChild(titleInput); 
-
-  // Render the todo description label field
-  const descriptionLabel = document.createElement("label"); 
-  descriptionLabel.setAttribute("for", "description"); 
-  descriptionLabel.textContent = "Todo Description: "; 
-  todoForm.appendChild(descriptionLabel); 
 
   // Render the todo description input field
   const descriptionInput = document.createElement("textarea"); 
   descriptionInput.setAttribute("name", "description"); 
   descriptionInput.setAttribute("id", "description"); 
+  descriptionInput.setAttribute("placeholder", "Description"); 
   todoForm.appendChild(descriptionInput); 
 
   // Render the label for due date selector
   const dueDateLabel = document.createElement("label"); 
   dueDateLabel.setAttribute("for", "due-date"); 
+  dueDateLabel.classList.add("due-date-label"); 
   dueDateLabel.textContent = "Due Date: "; 
   todoForm.appendChild(dueDateLabel); 
 
@@ -237,6 +228,7 @@ function renderTodoForm() {
   // Render the label for priority setter
   const priorityLabel = document.createElement("label"); 
   priorityLabel.setAttribute("for", "priority"); 
+  priorityLabel.classList.add("priority-label"); 
   priorityLabel.textContent = "Priority: "; 
   todoForm.appendChild(priorityLabel); 
 

@@ -4,6 +4,7 @@
 
 .todo-item {
   border-bottom: 1px solid rgb(180, 180, 180); 
+  margin: 5px 0px; 
 }
 
 .add-todo-button {
@@ -41,4 +42,99 @@
 
 .add-todo-button:hover img {
   filter: invert();
+}
+
+.todo-form {
+  display: grid; 
+  grid-template-rows: repeat(3, min-content); 
+  grid-template-columns: 90px min-content 90px min-content 1fr repeat(2, min-content);
+  gap: 5px; 
+  border: 1px solid rgb(180, 180, 180); 
+  border-radius: 10px;
+  padding: 10px; 
+}
+
+.todo-form #title {
+  grid-row: 1; 
+  grid-column: 1 / -1;
+  font-size: 1.1em; 
+  font-weight: bold; 
+  border: none; 
+  color: var(--dark-color); 
+}
+
+.todo-form #title:focus {
+  outline: none; 
+}
+
+.todo-form #description {
+  grid-row: 2; 
+  grid-column: 1 / -1;
+  font-family: var(--font-family); 
+  border: none; 
+  resize: none; 
+  color: var(--dark-color); 
+}
+
+.todo-form #description:focus {
+  outline: none; 
+}
+
+.todo-form .due-date-label {
+  grid-row: 3; 
+  grid-column: 1; 
+  color: var(--dark-color); 
+  align-self: center; 
+}
+
+.todo-form #due-date {
+  grid-row: 3; 
+  grid-column: 2; 
+  color: var(--dark-color); 
+  border: rgb(180, 180, 180) 1px solid; 
+  border-radius: 5px; 
+  font-family: var(--font-family); 
+  padding-left: 5px; 
+}
+
+.todo-form .priority-label {
+  grid-row: 3; 
+  grid-column: 3; 
+  text-align: right;
+  color: var(--dark-color); 
+  align-self: center;
+}
+
+.todo-form #priority {
+  grid-row: 3; 
+  grid-column: 4; 
+  color: var(--dark-color); 
+  border: rgb(180, 180, 180) 1px solid; 
+  border-radius: 5px; 
+}
+
+.todo-form .cancel, 
+.todo-form .save {
+  width: 70px; 
+  height: 30px; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  color: white; 
+  background-color: var(--semi-dark-color); 
+}
+
+.todo-form .cancel:hover, 
+.todo-form .save:hover {
+  background-color: var(--dark-color); 
+}
+
+.todo-form .cancel {
+  grid-row: 3; 
+  grid-column: -3; 
+}
+
+.todo-form .save {
+  grid-row: 3; 
+  grid-column: -2; 
 }

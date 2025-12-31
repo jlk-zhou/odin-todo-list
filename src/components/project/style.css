@@ -2,9 +2,9 @@
   width: calc(100% - var(--sidebar-width));
   padding: 15px max(10%, 35px); 
   flex: 1; 
+  color: var(--dark-color); 
 }
 
 .project > h3 {
-  color: var(--dark-color-font); 
   font-size: 1.5em; 
 }
