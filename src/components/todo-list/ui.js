@@ -10,6 +10,7 @@ import {
 } from "./ux.js"; 
 
 import "./style.css"; 
+import plusIcon from "./img/plus.svg"; 
 
 function renderTodoList(todoList) {
   const listDiv = document.createElement("div"); 
@@ -40,7 +41,20 @@ function renderTodoList(todoList) {
 function renderAddTodoButton() {
   const addTodoButton = document.createElement("button"); 
   addTodoButton.classList.add("add-todo-button"); 
-  addTodoButton.textContent = "Add Todo"; 
+  
+  const plusIconSpan = document.createElement("span"); 
+  plusIconSpan.classList.add("plus-icon"); 
+  plusIconSpan.setAttribute("aria-hidden", "true"); 
+
+  const plusIconImg = document.createElement("img"); 
+  plusIconImg.src = plusIcon; 
+  plusIconImg.alt = "Add Todo"; 
+  plusIconSpan.appendChild(plusIconImg); 
+  
+  addTodoButton.appendChild(plusIconSpan); 
+
+  const addTodoText = document.createTextNode("Add Todo"); 
+  addTodoButton.appendChild(addTodoText); 
   addTodoButton.addEventListener("click", addTodoHandler); 
   
   return addTodoButton; 

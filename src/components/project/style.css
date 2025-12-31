@@ -1,9 +1,6 @@
-:root {
-  --dark-color-font: #1c2227; 
-}
-
 .project {
-  padding: 14px max(10%, 30px); 
+  width: calc(100% - var(--sidebar-width));
+  padding: 15px max(10%, 35px); 
   flex: 1; 
 }
 

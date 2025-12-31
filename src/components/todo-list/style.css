@@ -3,5 +3,42 @@
 }
 
 .todo-item {
-  border-bottom: 1px solid grey; 
+  border-bottom: 1px solid rgb(180, 180, 180); 
+}
+
+.add-todo-button {
+  display: flex; 
+  align-items: center; 
+  gap: 10px; 
+  width: 100%; 
+  height: 45px; 
+  background: none; 
+  border: none; 
+  color: rgb(150, 150, 150); 
+  cursor: pointer; 
+}
+
+.add-todo-button:hover {
+  color: var(--dark-color); 
+}
+
+.add-todo-button img {
+  width: 20px; 
+  height: 20px; 
+  border-radius: 50%;
+  filter: brightness(0) saturate(100%) invert(62%) sepia(16%) saturate(18%) hue-rotate(338deg) brightness(94%) contrast(89%);
+}
+
+.add-todo-button .plus-icon {
+  width: 20px; 
+  height: 20px; 
+  border-radius: 50%; 
+}
+
+.add-todo-button:hover .plus-icon {
+  background-color: var(--dark-color);
+}
+
+.add-todo-button:hover img {
+  filter: invert();
 }
