@@ -123,3 +123,49 @@
 .due-date {
   margin: 3px; 
 }
+
+.due-date {
+  display: flex; 
+  align-items: center; 
+}
+
+.due-date img {
+  width: 14px; 
+  height: 14px; 
+  margin-right: 5px; 
+  position: relative; 
+  top: -0.5px; 
+  filter: var(--black-icon-dark-filter); 
+}
+
+dialog.item-detail {
+  width: 600px; 
+  height: 375px; 
+  border: none; 
+  border-radius: 20px; 
+  color: var(--dark-color); 
+}
+
+.item-detail .close-dialog {
+  background-color: transparent; 
+  border: none; 
+  width: 30px; 
+  height: 30px; 
+  background-image: url("./img/close.svg"); 
+  background-repeat: no-repeat; 
+  filter: var(--black-icon-semi-light-filter); 
+  cursor: pointer; 
+}
+
+.item-detail .close-dialog:hover {
+  filter: var(--black-icon-dark-filter); 
+}
+
+.item-detail img {
+  width: 16px; 
+  height: 16px; 
+  margin-right: 8px; 
+  position: relative; 
+  top: 2px; 
+  filter: var(--black-icon-dark-filter); 
+}

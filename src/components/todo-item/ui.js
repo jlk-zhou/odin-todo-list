@@ -10,6 +10,9 @@ import {
   checkValidityHandler, 
 } from "./ux.js"; 
 
+import calendarIcon from "./img/calendar-blank.svg"; 
+import flagIcon from "./img/flag.svg"; 
+
 function renderOptions() {
   // Create an option div for actions like edit and delete
   const optionsDiv = document.createElement("div"); 
@@ -69,6 +72,11 @@ function renderSummaryContent(todoItem) {
   dueDate.classList.add("due-date"); 
   if (!isNaN(todoItem.dueDate) && todoItem.dueDate !== null)
     {
+      const calendarIconImg = document.createElement("img"); 
+      calendarIconImg.src = calendarIcon; 
+      calendarIconImg.alt = "Calendar Icon"; 
+      dueDate.appendChild(calendarIconImg); 
+
       const options = {
         day: "2-digit", 
         month: "short", 
@@ -76,7 +84,8 @@ function renderSummaryContent(todoItem) {
       }
       const date = new Intl.DateTimeFormat("en-GB", options)
                            .format(todoItem.dueDate); 
-      dueDate.textContent = `${date}`; 
+      const dateText = document.createTextNode(`${date}`); 
+      dueDate.appendChild(dateText); 
       summaryDiv.appendChild(dueDate); 
     }
   
@@ -131,7 +140,6 @@ function renderItemDialog(todoItem) {
 
   const closeDialogButton = document.createElement("button"); 
   closeDialogButton.classList.add("close-dialog"); 
-  closeDialogButton.textContent = "Close"; 
   closeDialogButton.addEventListener("click", closeDialogHandler); 
   dialog.appendChild(closeDialogButton); 
 
@@ -154,6 +162,11 @@ function renderItemDialog(todoItem) {
     const dueDate = document.createElement("p"); 
     dueDate.classList.add("due-date-detail"); 
 
+    const calendarIconImg = document.createElement("img"); 
+    calendarIconImg.src = calendarIcon; 
+    calendarIconImg.alt = "Calendar Icon"; 
+    dueDate.appendChild(calendarIconImg); 
+
     const options = {
       day: "numeric", 
       month: "short", 
@@ -161,7 +174,8 @@ function renderItemDialog(todoItem) {
     }
 
     const date = new Intl.DateTimeFormat("en-GB", options).format(todoItem.dueDate); 
-    dueDate.textContent = `Due ${date}`; 
+    const dateText = document.createTextNode(`${date}`); 
+    dueDate.appendChild(dateText); 
 
     dialog.appendChild(dueDate); 
   }
@@ -169,6 +183,11 @@ function renderItemDialog(todoItem) {
   // Priority has to exist; even "none" is a priority
   const priority = document.createElement("p"); 
   priority.classList.add("priority-detail"); 
+
+  const flagIconImg = document.createElement("img"); 
+  flagIconImg.src = flagIcon; 
+  flagIconImg.alt = "Flag Icon"; 
+  priority.appendChild(flagIconImg); 
 
   let priorityText; 
   switch (todoItem.priority) {
@@ -186,7 +205,9 @@ function renderItemDialog(todoItem) {
       break; 
   }
 
-  priority.textContent = `Priority: ${priorityText}`; 
+  const priorityTextNode = document.createTextNode(`${priorityText}`); 
+  priority.appendChild(priorityTextNode); 
+
   dialog.appendChild(priority); 
 
   return dialog; 
@@ -218,7 +239,7 @@ function renderTodoForm() {
   const dueDateLabel = document.createElement("label"); 
   dueDateLabel.setAttribute("for", "due-date"); 
   dueDateLabel.classList.add("due-date-label"); 
-  dueDateLabel.textContent = "Due Date: "; 
+  dueDateLabel.textContent = "Due Date"; 
   todoForm.appendChild(dueDateLabel); 
 
   // Render the due date selector itself
@@ -232,7 +253,7 @@ function renderTodoForm() {
   const priorityLabel = document.createElement("label"); 
   priorityLabel.setAttribute("for", "priority"); 
   priorityLabel.classList.add("priority-label"); 
-  priorityLabel.textContent = "Priority: "; 
+  priorityLabel.textContent = "Priority"; 
   todoForm.appendChild(priorityLabel); 
 
   // Render the priority setter itself

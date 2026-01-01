@@ -7,6 +7,7 @@
   --light-color-shade: #cfdeb9; 
   --light-color: #ebf4dd; 
   --black-icon-light-filter: brightness(0) saturate(100%) invert(92%) sepia(4%) saturate(1172%) hue-rotate(357deg) brightness(110%) contrast(91%);
+  --black-icon-semi-light-filter: brightness(0) saturate(100%) invert(74%) sepia(20%) saturate(361%) hue-rotate(64deg) brightness(85%) contrast(86%);
   --black-icon-dark-filter: brightness(0) saturate(100%) invert(25%) sepia(5%) saturate(2379%) hue-rotate(163deg) brightness(94%) contrast(84%);
   --font-family: "Manrope", "Inter", "Roboto", "Helvetica", "Arial", "sans-serif"; 
   box-sizing: border-box;
