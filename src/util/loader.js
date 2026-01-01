@@ -2,6 +2,7 @@ import { ProjectList } from "../components/interface/class.js";
 import { Project } from "../components/project/class.js"; 
 import { TodoList } from "../components/todo-list/class.js"; 
 import { TodoItem } from "../components/todo-item/class.js"; 
+import data from "./data.json"; 
 
 function loadList(listData) { 
   const todoItems = []; 
@@ -39,10 +40,11 @@ function loadProject(projectData) {
 }
 
 function loadProjectList() {
-  let appData = localStorage.getItem("data"); 
-  if (!appData) {
-    appData = []; 
+  if (!localStorage.getItem("data")) {
+    localStorage.setItem("data", JSON.stringify(data)); 
   }
+  
+  const appData = localStorage.getItem("data"); 
   const projectsData = JSON.parse(appData); 
   
   const projects = []; 
