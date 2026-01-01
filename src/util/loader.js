@@ -39,7 +39,10 @@ function loadProject(projectData) {
 }
 
 function loadProjectList() {
-  const appData = localStorage.getItem("data"); 
+  let appData = localStorage.getItem("data"); 
+  if (!appData) {
+    appData = []; 
+  }
   const projectsData = JSON.parse(appData); 
   
   const projects = []; 
