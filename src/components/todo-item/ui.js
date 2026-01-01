@@ -18,21 +18,18 @@ function renderOptions() {
   // Render expand button
   const expandButton = document.createElement("button"); 
   expandButton.classList.add("expand"); 
-  expandButton.textContent = "More"; 
   expandButton.addEventListener("click", expandHandler); 
   optionsDiv.appendChild(expandButton); 
 
   // Render edit button
   const editButton = document.createElement("button"); 
   editButton.classList.add("edit"); 
-  editButton.textContent = "Edit"; 
   editButton.addEventListener("click", editHandler); 
   optionsDiv.appendChild(editButton); 
 
   // Render delete button
   const deleteButton = document.createElement("button"); 
   deleteButton.classList.add("delete"); 
-  deleteButton.textContent = "Delete"; 
   deleteButton.addEventListener("click", deleteHandler); 
   optionsDiv.appendChild(deleteButton); 
   

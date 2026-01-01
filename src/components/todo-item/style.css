@@ -62,7 +62,48 @@
 }
 
 .header .options {
+  display: none; 
+}
+
+.todo-item:hover .options {
   flex: none; 
+  display: flex; 
+  gap: 7px; 
+  align-items: center; 
+}
+
+.options button {
+  background-color: transparent; 
+  border: none; 
+  cursor: pointer; 
+  width: 23px; 
+  height: 23px; 
+  background-repeat: no-repeat; 
+  filter: var(--black-icon-dark-filter); 
+}
+
+.options .expand {
+  background-image: url("./img/eye-outline.svg"); 
+}
+
+.options .expand:hover {
+  background-image: url("./img/eye.svg");
+}
+
+.options .edit {
+  background-image: url("./img/pencil-outline.svg"); 
+}
+
+.options .edit:hover {
+  background-image: url("./img/pencil.svg");
+}
+
+.options .delete {
+  background-image: url("./img/delete-outline.svg");
+}
+
+.options .delete:hover {
+  background-image: url("./img/delete.svg");
 }
 
 .summary .description {
