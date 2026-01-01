@@ -1,35 +1,44 @@
 .todo-item {
   display: flex; 
-  gap: 10px; 
+  gap: 15px; 
 }
 
 .todo-item .toggle-done {
-  width: 100px; 
-  min-width: 100px;
-  height: 30px;
+  width: 25px; 
+  height: 25px;
+  background-color: transparent; 
+  border: none; 
+  cursor: pointer; 
+  background-image: url("./img/circle-outline.svg"); 
+  background-repeat: no-repeat; 
+  filter: var(--black-icon-dark-filter); 
+}
+
+.todo-item .toggle-done.done {
+  background-image: url("./img/circle-slice-8.svg"); 
 }
 
 .toggle-done.high-priority {
-  background-color: red;
+  filter: brightness(0) saturate(100%) invert(20%) sepia(46%) saturate(6178%) hue-rotate(353deg) brightness(78%) contrast(91%);
 }
 
 .toggle-done.medium-priority {
-  background-color: orange;
+  filter: brightness(0) saturate(100%) invert(55%) sepia(60%) saturate(619%) hue-rotate(355deg) brightness(92%) contrast(90%);
 }
 
 .toggle-done.low-priority {
-  background-color: skyblue;
+  filter: brightness(0) saturate(100%) invert(37%) sepia(64%) saturate(1107%) hue-rotate(179deg) brightness(86%) contrast(92%);
 }
 
 .toggle-done.no-priority {
-  background-color: rgb(173, 173, 173)
+  filter: var(--black-icon-dark-filter); 
 }
 
 .todo-item .summary {
-  flex: 1; 
+  width: 100%; 
   display: flex; 
   flex-direction: column;
-  max-width: calc(100% - 115px); 
+  max-width: calc(100% - 35px); 
 }
 
 .complete .summary .title {
@@ -44,7 +53,8 @@
 .header .title {
   max-width: calc(100% - 110px);
   flex: 1; 
-  font-size: 1em; 
+  font-size: 0.9em; 
+  font-weight: 500; 
   display: -webkit-box; 
   -webkit-box-orient: vertical; 
   -webkit-line-clamp: 4; 
@@ -63,8 +73,8 @@
 
 .summary .description, 
 .summary .due-date {
-  font-size: 0.9em; 
-  color: rgb(80, 80, 80)
+  font-size: 0.8em; 
+  color: var(--dark-color); 
 }
 
 .title, 

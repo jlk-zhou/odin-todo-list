@@ -97,7 +97,10 @@ function renderTodoItem(todoItem) {
   // Render toggle done button
   const toggleDoneButton = document.createElement("button"); 
   toggleDoneButton.classList.add("toggle-done"); 
-  toggleDoneButton.textContent = todoItem.done ? "Done" : "Not Done"; 
+  // toggleDoneButton.textContent = todoItem.done ? "Done" : "Not Done"; 
+  if (todoItem.done) {
+    toggleDoneButton.classList.add("done"); 
+  }
   toggleDoneButton.addEventListener("click", toggleDoneHandler); 
   containerDiv.appendChild(toggleDoneButton); 
 

@@ -4,7 +4,7 @@
 
 .todo-item {
   border-bottom: 1px solid rgb(180, 180, 180); 
-  margin: 5px 0px; 
+  padding: 10px 0px; 
 }
 
 .add-todo-button {
@@ -52,6 +52,7 @@
   border: 1px solid rgb(180, 180, 180); 
   border-radius: 10px;
   padding: 10px; 
+  margin-top: 5px; 
 }
 
 .todo-form #title {
