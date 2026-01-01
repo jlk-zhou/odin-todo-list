@@ -7,6 +7,7 @@ import {
   cancelButtonHandler, 
   saveButtonHandler, 
   deleteHandler, 
+  checkValidityHandler, 
 } from "./ux.js"; 
 
 function renderOptions() {
@@ -205,6 +206,8 @@ function renderTodoForm() {
   titleInput.setAttribute("name", "title"); 
   titleInput.setAttribute("id", "title"); 
   titleInput.setAttribute("placeholder", "Task Name"); 
+  titleInput.required = true; 
+  titleInput.addEventListener("keyup", checkValidityHandler); 
   todoForm.appendChild(titleInput); 
 
   // Render the todo description input field

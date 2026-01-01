@@ -71,6 +71,7 @@ function renderAddTodoForm() {
   // Add save button event handler
   const saveButton = addTodoForm.querySelector(".save"); 
   saveButton.addEventListener("click", saveButtonHandler); 
+  saveButton.disabled = true; 
 
   return addTodoForm; 
 }

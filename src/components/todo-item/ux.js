@@ -124,6 +124,11 @@ function deleteHandler(event) {
   refreshProjectsInterface();  
 }
 
+function checkValidityHandler(event) {
+  const saveButton = document.querySelector(".todo-form .save"); 
+  event.target.checkValidity() ? saveButton.disabled = false : saveButton.disabled = true; 
+}
+
 export { 
   toggleDoneHandler, 
   expandHandler, 
@@ -132,4 +137,5 @@ export {
   cancelButtonHandler, 
   saveButtonHandler, 
   deleteHandler, 
+  checkValidityHandler, 
 }; 

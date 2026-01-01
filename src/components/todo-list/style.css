@@ -121,21 +121,31 @@
   border: none; 
   border-radius: 5px; 
   cursor: pointer; 
-  color: white; 
-  background-color: var(--semi-dark-color); 
 }
 
-.todo-form .cancel:hover, 
+.todo-form .cancel:hover {
+  background-color: var(--light-color-shade); 
+}
+
 .todo-form .save:hover {
   background-color: var(--dark-color); 
+}
+
+.todo-form .save:disabled {
+  background-color: #94af9c; 
+  cursor: not-allowed; 
 }
 
 .todo-form .cancel {
   grid-row: 3; 
   grid-column: -3; 
+  color: var(--dark-color); 
+  background-color: var(--light-color); 
 }
 
 .todo-form .save {
   grid-row: 3; 
   grid-column: -2; 
+  color: white; 
+  background-color: var(--semi-dark-color); 
 }
